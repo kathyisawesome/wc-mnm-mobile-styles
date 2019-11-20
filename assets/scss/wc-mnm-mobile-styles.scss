@@ -1,0 +1,92 @@
+/**
+ * Variables
+ */
+$handheld:          568px;
+
+/**
+ * Handheld
+ */
+@media (max-width: $handheld) {
+
+	.mnm_form {
+
+		font-size: .75em;
+
+		&.layout_tabular {
+
+			.mnm_table {
+				thead { display: none; }
+
+				tr {
+					max-width: 300px;
+					display: block;
+					margin: 0 auto;
+				}
+
+				td {
+					padding-left: 0;
+					padding-right: 0;
+					padding-top: 0;
+					display: block;
+					vertical-align: top;
+					line-height: 1.4;
+				}
+
+				.product-thumbnail {
+					display: block;
+					width: 100%;
+
+					.mnm_image {
+						width: 100%;
+						padding-right: 0;
+						margin: 0 auto;
+					}
+				}
+
+				.product-details {
+					display: inline-block;
+					width: 65%;
+
+					dl.variation, .price {
+						margin-top: 0;
+						font-size: .75;
+					}
+				}
+
+				.product-quantity {
+					display: inline-block;
+					width: 35%;
+					text-align: right;
+
+					.qty {
+						width: 4em;
+					}
+
+				}
+			}
+		}
+
+		.mnm_message {
+
+			&.mnm_quantity_updated {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				z-index: 99;
+
+				.woocommerce-info {
+					margin-bottom: 0;
+				}
+
+				.mnm_message_content {
+					padding: 0;
+				}
+
+			}
+
+		}
+
+	}
+
+}

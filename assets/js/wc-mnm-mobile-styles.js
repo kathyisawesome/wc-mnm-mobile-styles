@@ -1,20 +1,19 @@
 jQuery( document ).ready( function( $ ) {
 
-	var wc_mnm_styles_timer = null;
+	$.fn.isInViewport = function() {
+		var elementTop = $(this).offset().top;
+		var elementBottom = elementTop + $(this).outerHeight();var viewportTop = $(window).scrollTop();
+		var viewportBottom = viewportTop + $(window).height();return elementBottom > viewportTop && elementTop < viewportBottom;
+	};
 
-	$( "form.mnm_form" ).on( 'wc-mnm-form-updated', function( event, container ) {
-
-		container.$mnm_message.addClass( 'mnm_quantity_updated' );
-
-		if (wc_mnm_styles_timer) {
-			clearTimeout(wc_mnm_styles_timer); //cancel the previous timer.
-			wc_mnm_styles_timer = null;
+	$(window).on('resize scroll', function() {
+	
+		if( $( "form.mnm_form .products" ).isInViewport() ) {
+			$( "form.mnm_form" ).find('.mnm_message').addClass('fixed');
+		} else {
+			$( "form.mnm_form" ).find('.mnm_message').removeClass('fixed');
 		}
-		wc_mnm_styles_timer = setTimeout(function(){
-			container.$mnm_message.removeClass( 'mnm_quantity_updated');
-		}, 2000 );
-
-	} );
+	});
 
 } );
 

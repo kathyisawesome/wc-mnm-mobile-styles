@@ -10,11 +10,11 @@
 * Text Domain: wc-mnm-mobile-styles
 * Domain Path: /languages/
 *
-* Requires at least: 5.1
-* Tested up to: 5.3
+* Requires at least: 5.1.0
+* Tested up to: 5.3.0
 *
 * WC requires at least: 3.7.0
-* WC tested up to: 3.7.0
+* WC tested up to: 3.8.0
 *
 * Copyright: © 2019 Kathy Darling
 * License: GNU General Public License v3.0

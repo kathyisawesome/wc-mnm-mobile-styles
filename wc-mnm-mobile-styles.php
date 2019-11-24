@@ -3,7 +3,7 @@
 * Plugin Name: WooCommerce Mix and Match: Mobile Styles
 * Plugin URI: https://woocommerce.com/products/woocommerce-mix-and-match-products/
 * Description: Add some styles for mobile.
-* Version: 1.0.0.beta.1
+* Version: 1.0.0-beta-2
 * Author: Kathy Darling
 * Author URI: http://kathyisawesome.com/
 *
@@ -76,7 +76,8 @@ class WC_MNM_Mobile_Styles {
 		wp_style_add_data( 'wc_mnm_mobile', 'rtl', 'replace' );
 
 		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-		wp_register_script( 'wc_mnm_mobile', self::plugin_url() . '/assets/js/wc-mnm-mobile-styles' . $suffix . '.js', array( 'wc-add-to-cart-mnm' ), self::$version, true );
+		wp_register_script( 'wc_mnm_mobile', self::plugin_url() . '/assets/js/wc-mnm-mobile-styles' . $suffix . '.js', array( 'wc-add-to-cart-mnm' ), time(), true );
+
 	}
 
 

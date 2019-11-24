@@ -56,6 +56,10 @@ class WC_MNM_Mobile_Styles {
 		 */
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'register_scripts' ) );
 		add_action( 'woocommerce_mix-and-match_add_to_cart', array( __CLASS__, 'enqueue_script' ) );
+
+		add_action( 'woocommerce_before_add_to_cart_button', array( __CLASS__, 'wrap_quantity_open' ) );
+		add_action( 'woocommerce_after_add_to_cart_button', array( __CLASS__, 'wrap_quantity_close' ) );
+		
 	}
 
 
@@ -83,6 +87,25 @@ class WC_MNM_Mobile_Styles {
 		wp_enqueue_script( 'wc_mnm_mobile' );
 	}
 
+
+	/**
+	 * Echo opening markup if necessary.
+	 *
+	 * @param obj $product WC_Mix_And_Match of parent product
+	 */
+	public static function wrap_quantity_open( $product ) {
+		echo '</div><!--.mnm_button_wrap -->
+		<div class="mnm_button_wrap">';
+	}
+
+	/**
+	 * Echo opening markup if necessary.
+	 *
+	 * @param obj $product WC_Mix_And_Match of parent product
+	 */
+	public static function wrap_quantity_close( $product ) {
+		echo '</div><!--.mnm_button_wrap -->';
+	}
 
 }
 add_action( 'woocommerce_mnm_loaded', array( 'WC_MNM_Mobile_Styles', 'init' ) );

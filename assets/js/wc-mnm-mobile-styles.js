@@ -9,10 +9,6 @@
 	// Hook into Mix and Match.
 	$( '.mnm_form' )
 		.on( 'wc-mnm-initializing', function( event, container ) {
-			
-			// Duplicate the add to cart button.
-			var $cloned_button = container.$mnm_button.clone( true );
-			container.$mnm_message_content.after( $cloned_button );
 
 			var $products = container.$mnm_form.find( '.products' ).first();
 			var $scroll_selector = $products.length ? $products : container.$mnm_form.find( 'table tbody' );

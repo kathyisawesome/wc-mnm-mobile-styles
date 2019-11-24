@@ -91,21 +91,23 @@ class WC_MNM_Mobile_Styles {
 
 	/**
 	 * Echo opening markup if necessary.
-	 *
-	 * @param obj $product WC_Mix_And_Match of parent product
 	 */
-	public static function wrap_quantity_open( $product ) {
-		echo '</div><!--.mnm_button_wrap -->
-		<div class="mnm_button_wrap">';
+	public static function wrap_quantity_open() {
+		global $product;
+		if( $product instanceof WC_Product && $product->is_type( 'mix-and-match' ) ) {
+			echo '</div><!--.mnm_button_wrap -->
+			<div class="mnm_button_wrap">';
+		}
 	}
 
 	/**
 	 * Echo opening markup if necessary.
-	 *
-	 * @param obj $product WC_Mix_And_Match of parent product
 	 */
-	public static function wrap_quantity_close( $product ) {
-		echo '</div><!--.mnm_button_wrap -->';
+	public static function wrap_quantity_close() {
+		global $product;		
+		if( $product instanceof WC_Product && $product->is_type( 'mix-and-match' ) ) {
+			echo '</div><!--.mnm_button_wrap -->';
+		}
 	}
 
 }

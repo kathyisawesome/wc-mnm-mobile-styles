@@ -20,10 +20,10 @@
 			$(window).on( 'resize scroll', function() {
 				if( $scroll_selector.length && $scroll_selector.isInViewport() ) {
 					container.$mnm_data.toggleClass( 'fixed', true );
-					container.$mnm_message.toggleClass( 'woocommerce-info', false );
+					container.$mnm_message.find('div:first-child').toggleClass( 'woocommerce-info', false );
 				} else {
 					container.$mnm_data.toggleClass( 'fixed', false );
-					container.$mnm_message.toggleClass( 'woocommerce-info', true );
+					container.$mnm_message.find('div:first-child').toggleClass( 'woocommerce-info', true );
 				}
 			});
 

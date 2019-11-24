@@ -33,7 +33,7 @@ class WC_MNM_Mobile_Styles {
 	 *
 	 * @var string
 	 */
-	public static $version = '1.0.0.beta.3';
+	public static $version = '1.0.0-beta-2';
 
 
 	/**
@@ -76,7 +76,7 @@ class WC_MNM_Mobile_Styles {
 		wp_style_add_data( 'wc_mnm_mobile', 'rtl', 'replace' );
 
 		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
-		wp_register_script( 'wc_mnm_mobile', self::plugin_url() . '/assets/js/wc-mnm-mobile-styles' . $suffix . '.js', array( 'wc-add-to-cart-mnm' ), time(), true );
+		wp_register_script( 'wc_mnm_mobile', self::plugin_url() . '/assets/js/wc-mnm-mobile-styles' . $suffix . '.js', array( 'wc-add-to-cart-mnm' ), self::$version, true );
 
 	}
 

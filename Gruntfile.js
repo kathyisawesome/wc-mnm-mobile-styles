@@ -7,6 +7,8 @@ module.exports = function( grunt ) {
 
 	grunt.initConfig({
 
+		pkg: grunt.file.readJSON('package.json'),
+
 		// Setting folder templates.
 		dirs: {
 			css: 'assets/css',
@@ -76,6 +78,7 @@ module.exports = function( grunt ) {
 		// JavaScript linting with JSHint.
 		jshint: {
 			options: {
+				'esversion': 6,
 				'force': true,
 				'boss': true,
 				'curly': true,
@@ -144,6 +147,35 @@ module.exports = function( grunt ) {
 			}
 		},
 
+		// bump version numbers (replace with version in package.json)
+		replace: {
+			Version: {
+				src: [
+					'readme.txt',
+					'<%= pkg.name %>.php'
+				],
+				overwrite: true,
+				replacements: [
+					{
+						from: /Stable tag:.*$/m,
+						to: 'Stable tag: <%= pkg.version %>'
+					},
+					{
+						from: /Version:.*$/m,
+						to: 'Version: <%= pkg.version %>'
+					},
+					{
+						from: /public \$version = \'.*.'/m,
+						to: 'public $version = <%= pkg.version %>'
+					},
+					{
+						from: /public \$version      = \'.*.'/m,
+						to: 'public $version      = <%= pkg.version %>'
+					}
+				]
+			}
+		},
+
 	});
 
 	grunt.registerTask( 'js', [
@@ -161,5 +193,10 @@ module.exports = function( grunt ) {
 	grunt.registerTask( 'assets', [
 		'js',
 		'css'
+	]);
+
+	grunt.registerTask( 'build', [
+		'replace',
+		'assets'
 	]);
 };

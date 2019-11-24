@@ -97,16 +97,13 @@ $handheld:          568px;
 		-webkit-animation-fill-mode: both;
 		animation-fill-mode: both;
 
-
-
-
 		.mnm_button_wrap:nth-child(1) {
-			width: 70%;
+			width: 100%;
 			float: left;
 		}
 
 		.mnm_button_wrap:nth-child(2) { 
-			width: 30%;
+			width: 0%;
 			float: right;
 			display: none;
 			text-align: right;
@@ -135,7 +132,16 @@ $handheld:          568px;
 		}
 
 		&.valid {
-			.mnm_button_wrap:nth-child(2) { display: block; }
+
+			.mnm_button_wrap:nth-child(1) {
+				width: 60%;
+			}
+
+			.mnm_button_wrap:nth-child(2) { 
+				display: block;
+				width: 40%;
+			}
+
 		}
 
 	}

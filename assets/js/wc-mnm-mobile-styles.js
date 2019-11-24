@@ -27,9 +27,15 @@
 		} )
 		.on( 'wc-mnm-hide-add-to-cart-button', function( event, container ) {
 			container.$mnm_data.toggleClass( 'valid', false );
+			if( container.$mnm_data.hasClass('fixed') ) {
+				container.$mnm_message.show();
+			}
 		} )
 		.on( 'wc-mnm-display-add-to-cart-button', function( event, container ) {
 			container.$mnm_data.toggleClass( 'valid', true );
+			if( container.$mnm_data.hasClass('fixed') ) {
+				container.$mnm_message.hide();
+			}
 		} );
 
 

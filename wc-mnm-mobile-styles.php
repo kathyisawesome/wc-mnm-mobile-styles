@@ -44,8 +44,12 @@ class WC_MNM_Mobile_Styles {
 	public static function plugin_url() {
 		return plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename(__FILE__) );
 	}
+        
+        public static function plugin_path(){
+            return plugin_dir_path( __FILE__ ) ;
+        }
 
-	/**
+        /**
 	 * Fire in the hole!
 	 */
 	public static function init() {
@@ -57,11 +61,29 @@ class WC_MNM_Mobile_Styles {
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'register_scripts' ) );
 		add_action( 'woocommerce_mix-and-match_add_to_cart', array( __CLASS__, 'enqueue_script' ) );
 
-		add_action( 'woocommerce_before_add_to_cart_button', array( __CLASS__, 'wrap_quantity_open' ) );
-		add_action( 'woocommerce_after_add_to_cart_button', array( __CLASS__, 'wrap_quantity_close' ) );
+//		add_action( 'woocommerce_before_add_to_cart_button', array( __CLASS__, 'wrap_quantity_open' ) );
+//		add_action( 'woocommerce_after_add_to_cart_button', array( __CLASS__, 'wrap_quantity_close' ) );
+                add_action('woocommerce_mnm_add_to_cart_wrap',array (__CLASS__, 'mnm_mobile') );
 		
 	}
+        public static function mnm_mobile(){
+            global $product;
+            if ( isset( $_GET[ 'update-container' ] ) ) {
+                    $updating_cart_key = wc_clean( $_GET[ 'update-container' ] );
+                    if ( isset( WC()->cart->cart_contents[ $updating_cart_key ] ) ) {
+                            echo '<input type="hidden" name="update-container" value="' . $updating_cart_key . '" />';
+                    }
+            }
 
+            wc_get_template(
+                    'mnm-mobile.php',
+                    array(
+                            'product' => $product,
+                    ),
+                    '',
+                    self::plugin_path() . '/templates/'
+            ); 
+        }
 
 	/*-----------------------------------------------------------------------------------*/
 	/* Front End Display */
@@ -73,7 +95,8 @@ class WC_MNM_Mobile_Styles {
 	 */
 	public static function register_scripts() {
 		wp_enqueue_style( 'wc_mnm_mobile', self::plugin_url() . '/assets/css/wc-mnm-mobile-styles.css', array( 'wc-mnm-frontend' ), self::$version );
-		wp_style_add_data( 'wc_mnm_mobile', 'rtl', 'replace' );
+                wp_enqueue_style( 'wc_mnm_frontend_mobile', self::plugin_url() . '/assets/css/wc-mnm-frontend-mobile.css', array( 'wc-mnm-frontend' ), self::$version );		
+                wp_style_add_data( 'wc_mnm_mobile', 'rtl', 'replace' );
 
 		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 		wp_register_script( 'wc_mnm_mobile', self::plugin_url() . '/assets/js/wc-mnm-mobile-styles' . $suffix . '.js', array( 'wc-add-to-cart-mnm' ), self::$version, true );

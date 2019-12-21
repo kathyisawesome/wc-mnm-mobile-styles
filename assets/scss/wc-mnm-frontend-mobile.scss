@@ -1,0 +1,108 @@
+@charset "UTF-8";
+
+$handheld:  768px;
+
+div.mnm-mobile-container{
+    position: fixed;
+    left: 0;
+    bottom: -150px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    margin: 0 auto;
+    z-index: 10002;
+    font-size: 14px;
+    min-height: 160px;
+    transition: all .5s;
+    &.mnm-mobile-slide{
+        bottom: 0;
+    }
+
+    div.mnm-mobile-nav{
+        display: block;
+        text-align: center;
+        position: absolute;
+        top: -45px;
+        background-color: transparent;
+        color: #ccc;
+        width: 100%;
+        height: 45px;
+        line-height: 45px;
+        margin: 0 auto;   
+        a.mnm-mobile-btn-slide{
+            display: block;
+            width: 45px;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #ccc;
+            border-top-right-radius: 40%;
+            border-top-left-radius: 40%;
+            &:after{
+                content: "\002B";
+            }
+            &.up{
+                &:after{
+                    /*content: ;*/
+                }
+            }
+
+        }
+    }
+
+    div.mnm-mobile-content{
+        background-color: transparent;
+        width: 100%;
+        height: 100%;
+        /*position: absolute;*/
+        /*top: 0;*/
+        /*left: 0;*/
+        padding: 5px 10px;
+        color: #ccc;
+        .mnm_cart{
+            ins{
+                background: #414141;
+                text-decoration: none;
+                padding: 2px 5px;
+            }
+            .mnm_button_wrap{
+                div.quantity{
+                    display: none;
+                }
+                button.mnm_add_to_cart_button{
+                    display: none; 
+                }
+            }            
+            &.valid{
+                .mnm_button_wrap{
+                    position: relative;
+                    div.mnm_message{
+                        display: none;
+                    }
+                    .mnm_price{
+                        max-width: 50%;
+                    }
+                    button.mnm_add_to_cart_button{
+                        display: block;
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                    }
+
+                }
+            }
+        }
+        @media screen and (min-width: $handheld){
+            max-width: 50%;
+            margin: 0 auto;
+        }
+    }
+    @media screen and (min-width: $handheld){
+
+
+        /*display: none;*/
+
+
+    }
+}
+
+
+

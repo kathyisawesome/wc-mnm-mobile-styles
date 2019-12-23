@@ -36,6 +36,10 @@ div.mnm-mobile-container div.mnm-mobile-nav a.mnm-mobile-btn-slide {
   color: #ccc;
   border-top-right-radius: 40%;
   border-top-left-radius: 40%;
+  border-bottom: 1px solid #000;
+}
+div.mnm-mobile-container div.mnm-mobile-nav a.mnm-mobile-btn-slide:focus {
+  outline-color: transparent;
 }
 div.mnm-mobile-container div.mnm-mobile-nav a.mnm-mobile-btn-slide:after {
   content: "+";

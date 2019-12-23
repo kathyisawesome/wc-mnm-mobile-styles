@@ -38,6 +38,10 @@ div.mnm-mobile-container{
             color: #ccc;
             border-top-right-radius: 40%;
             border-top-left-radius: 40%;
+            border-bottom: 1px solid #000;
+            &:focus{
+                outline-color: transparent;
+            }
             &:after{
                 content: "\002B";
             }

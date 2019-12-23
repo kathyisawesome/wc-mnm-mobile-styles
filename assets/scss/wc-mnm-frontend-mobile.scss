@@ -58,10 +58,15 @@ div.mnm-mobile-container{
         padding: 5px 10px;
         color: #ccc;
         .mnm_cart{
+            del{
+                color: #fff;
+                opacity: .8;
+            }
             ins{
                 background: #414141;
                 text-decoration: none;
                 padding: 2px 5px;
+                color: #fff;
             }
             .mnm_button_wrap{
                 div.quantity{
@@ -70,7 +75,10 @@ div.mnm-mobile-container{
                 button.mnm_add_to_cart_button{
                     display: none; 
                 }
-            }            
+            }
+            ul.mnm_message_content{
+                list-style-type: none!important;
+            }
             &.valid{
                 .mnm_button_wrap{
                     position: relative;
@@ -79,6 +87,9 @@ div.mnm-mobile-container{
                     }
                     .mnm_price{
                         max-width: 50%;
+                        span.total , span.amount{
+                            color: #fff;
+                        }
                     }
                     button.mnm_add_to_cart_button{
                         display: block;
@@ -87,6 +98,12 @@ div.mnm-mobile-container{
                         right: 0;
                     }
 
+                }
+            }
+            .mnm_price{
+
+                span.total , span.amount{
+                    color: #fff;
                 }
             }
         }

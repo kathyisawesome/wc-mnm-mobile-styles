@@ -50,16 +50,24 @@ div.mnm-mobile-container div.mnm-mobile-content {
   padding: 5px 10px;
   color: #ccc;
 }
+div.mnm-mobile-container div.mnm-mobile-content .mnm_cart del {
+  color: #fff;
+  opacity: 0.8;
+}
 div.mnm-mobile-container div.mnm-mobile-content .mnm_cart ins {
   background: #414141;
   text-decoration: none;
   padding: 2px 5px;
+  color: #fff;
 }
 div.mnm-mobile-container div.mnm-mobile-content .mnm_cart .mnm_button_wrap div.quantity {
   display: none;
 }
 div.mnm-mobile-container div.mnm-mobile-content .mnm_cart .mnm_button_wrap button.mnm_add_to_cart_button {
   display: none;
+}
+div.mnm-mobile-container div.mnm-mobile-content .mnm_cart ul.mnm_message_content {
+  list-style-type: none !important;
 }
 div.mnm-mobile-container div.mnm-mobile-content .mnm_cart.valid .mnm_button_wrap {
   position: relative;
@@ -70,11 +78,17 @@ div.mnm-mobile-container div.mnm-mobile-content .mnm_cart.valid .mnm_button_wrap
 div.mnm-mobile-container div.mnm-mobile-content .mnm_cart.valid .mnm_button_wrap .mnm_price {
   max-width: 50%;
 }
+div.mnm-mobile-container div.mnm-mobile-content .mnm_cart.valid .mnm_button_wrap .mnm_price span.total, div.mnm-mobile-container div.mnm-mobile-content .mnm_cart.valid .mnm_button_wrap .mnm_price span.amount {
+  color: #fff;
+}
 div.mnm-mobile-container div.mnm-mobile-content .mnm_cart.valid .mnm_button_wrap button.mnm_add_to_cart_button {
   display: block;
   position: absolute;
   top: 0;
   right: 0;
+}
+div.mnm-mobile-container div.mnm-mobile-content .mnm_cart .mnm_price span.total, div.mnm-mobile-container div.mnm-mobile-content .mnm_cart .mnm_price span.amount {
+  color: #fff;
 }
 @media screen and (min-width: 768px) {
   div.mnm-mobile-container div.mnm-mobile-content {

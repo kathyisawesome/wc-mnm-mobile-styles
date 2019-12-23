@@ -1,3 +1,4 @@
+@charset "UTF-8";
 div.mnm-mobile-container {
   position: fixed;
   left: 0;
@@ -40,7 +41,7 @@ div.mnm-mobile-container div.mnm-mobile-nav a.mnm-mobile-btn-slide:after {
   content: "+";
 }
 div.mnm-mobile-container div.mnm-mobile-nav a.mnm-mobile-btn-slide.up:after {
-  /*content: ;*/
+  content: "−";
 }
 div.mnm-mobile-container div.mnm-mobile-content {
   background-color: transparent;

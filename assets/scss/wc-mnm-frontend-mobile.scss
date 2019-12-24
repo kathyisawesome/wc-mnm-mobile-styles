@@ -13,7 +13,7 @@ div.mnm-mobile-container{
     font-size: 14px;
     min-height: 160px;
     padding: 10px 5px;
-    box-shadow: 0 -1px 2px rgba(0,0,0,.2);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
     transition: all .5s;
     &.mnm-mobile-slide{
         bottom: 0;
@@ -37,10 +37,13 @@ div.mnm-mobile-container{
             border-top-right-radius: 40%;
             border-top-left-radius: 40%;
             border-bottom: 1px solid #fff;
-            box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 -3px 4px rgba(0, 0, 0, 0.2);
             font-size: 1.6rem;
             height: 45px;
             line-height: 45px;
+            &:hover{
+                background-color: #aaa;
+            }
             &:focus{
                 outline-color: transparent;
             }

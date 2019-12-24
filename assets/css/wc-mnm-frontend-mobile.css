@@ -40,8 +40,8 @@ div.mnm-mobile-container div.mnm-mobile-nav a.mnm-mobile-btn-slide {
   height: 45px;
   line-height: 45px;
 }
-div.mnm-mobile-container div.mnm-mobile-nav a.mnm-mobile-btn-slide:hover {
-  background-color: #aaa;
+div.mnm-mobile-container div.mnm-mobile-nav a.mnm-mobile-btn-slide:hover::after {
+  color: #858585;
 }
 div.mnm-mobile-container div.mnm-mobile-nav a.mnm-mobile-btn-slide:focus {
   outline-color: transparent;

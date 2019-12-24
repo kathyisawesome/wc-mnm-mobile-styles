@@ -42,7 +42,9 @@ div.mnm-mobile-container{
             height: 45px;
             line-height: 45px;
             &:hover{
-                background-color: #aaa;
+                &::after{
+                    color: rgb(133, 133, 133);
+                }
             }
             &:focus{
                 outline-color: transparent;

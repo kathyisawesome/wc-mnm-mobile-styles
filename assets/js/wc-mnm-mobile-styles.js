@@ -7,7 +7,7 @@
 	};
 
 	// Hook into Mix and Match.
-	$( '.mnm_form' )
+	$( 'body' )
 		.on( 'wc-mnm-initializing', function( event, container ) {
 
 			var $products = container.$mnm_form.find( '.products' ).first();

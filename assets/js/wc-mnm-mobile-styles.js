@@ -56,11 +56,11 @@
 			$mobile_price.html( container.$mnm_price.html() );
 
 		} )
-		.on( 'wc-mnm-hide-add-to-cart-button', function( event, container ) {
+		.on( 'wc-mnm-hide-add-to-cart-button', function() {
 			$( '#mnm-mobile-container' ).toggleClass( 'valid', false );
 			$( '#mnm-mobile-container' ).find( '.mnm_add_to_cart_button' ).toggleClass( 'disabled', true ).prop( 'disabled', true );
 		} )
-		.on( 'wc-mnm-display-add-to-cart-button', function( event, container ) {
+		.on( 'wc-mnm-display-add-to-cart-button', function() {
 			$( '#mnm-mobile-container' ).toggleClass( 'valid', true );
 			$( '#mnm-mobile-container' ).find( '.mnm_add_to_cart_button' ).toggleClass( 'disabled', false ).prop( 'disabled', false );
 		} );

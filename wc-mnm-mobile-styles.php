@@ -113,5 +113,14 @@ class WC_MNM_Mobile_Styles {
 		return untrailingslashit( plugins_url( '/', __FILE__ ) );
 	}
 
+	/**
+	 * Get the plugin path.
+	 *
+	 * @return string
+	 */
+	public static function plugin_path() {
+		return untrailingslashit( plugin_dir_path( __FILE__ ) );
+	}
+
 }
 add_action( 'woocommerce_mnm_loaded', array( 'WC_MNM_Mobile_Styles', 'init' ) );

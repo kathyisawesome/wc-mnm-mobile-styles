@@ -35,16 +35,6 @@ class WC_MNM_Mobile_Styles {
 	 */
 	public static $version = '1.0.0-beta-2';
 
-
-	/**
-	 * Plugin URL.
-	 *
-	 * @return string
-	 */
-	public static function plugin_url() {
-		return plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename(__FILE__) );
-	}
-
 	/**
 	 * Fire in the hole!
 	 */
@@ -108,6 +98,19 @@ class WC_MNM_Mobile_Styles {
 		if( $product instanceof WC_Product && $product->is_type( 'mix-and-match' ) ) {
 			echo '</div><!--.mnm_button_wrap -->';
 		}
+	}
+
+	/*-----------------------------------------------------------------------------------*/
+	/*  Helper Functions                                                                 */
+	/*-----------------------------------------------------------------------------------*/
+
+	/**
+	 * Get the plugin url.
+	 *
+	 * @return string
+	 */
+	public static function plugin_url() {
+		return untrailingslashit( plugins_url( '/', __FILE__ ) );
 	}
 
 }

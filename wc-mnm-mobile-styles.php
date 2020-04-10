@@ -37,28 +37,23 @@ class WC_MNM_Mobile_Styles {
 
 
 	/**
-	 * Plugin URL.
+	 * The Mix and Match product object.
 	 *
-	 * @return string
+	 * @var string
 	 */
-	public static function plugin_url() {
-		return plugins_url( basename( plugin_dir_path( __FILE__ ) ), basename(__FILE__) );
-	}
+	private static $container = false;
+	
 
 	/**
 	 * Fire in the hole!
 	 */
 	public static function init() {
-		
 
 		/*
 		 * Display.
 		 */
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'register_scripts' ) );
-		add_action( 'woocommerce_mix-and-match_add_to_cart', array( __CLASS__, 'enqueue_script' ) );
-
-		add_action( 'woocommerce_before_add_to_cart_button', array( __CLASS__, 'wrap_quantity_open' ) );
-		add_action( 'woocommerce_after_add_to_cart_button', array( __CLASS__, 'wrap_quantity_close' ) );
+		add_action( 'woocommerce_mnm_add_to_cart_wrap', array( __CLASS__, 'add_template_to_footer' ), 99 );
 		
 	}
 
@@ -85,29 +80,60 @@ class WC_MNM_Mobile_Styles {
 	 * Load the script only when needed
 	 */
 	public static function enqueue_script() {
+		
+	}
+
+
+	/**
+	 * Add the mobile template
+	 */
+	public static function add_template_to_footer( $container ) {
+
 		wp_enqueue_script( 'wc_mnm_mobile' );
-	}
 
+		self::$container = $container;
 
-	/**
-	 * Echo opening markup if necessary.
-	 */
-	public static function wrap_quantity_open() {
-		global $product;
-		if( $product instanceof WC_Product && $product->is_type( 'mix-and-match' ) ) {
-			echo '</div><!--.mnm_button_wrap -->
-			<div class="mnm_button_wrap">';
-		}
+		add_action( 'wp_footer', array( __CLASS__, 'footer_template' ), 99 );
 	}
 
 	/**
-	 * Echo opening markup if necessary.
+	 * Add the mobile template
 	 */
-	public static function wrap_quantity_close() {
-		global $product;		
-		if( $product instanceof WC_Product && $product->is_type( 'mix-and-match' ) ) {
-			echo '</div><!--.mnm_button_wrap -->';
-		}
+	public static function footer_template() {
+
+		wc_get_template(
+			'single-product/mnm/mobile-footer.php',
+			array(
+				'container' => self::$container,
+			),
+			'',
+			self::plugin_path() . '/templates/'
+		);
+
+		self::$container = false;
+
+	}
+
+	/*-----------------------------------------------------------------------------------*/
+	/*  Helper Functions                                                                 */
+	/*-----------------------------------------------------------------------------------*/
+
+	/**
+	 * Get the plugin url.
+	 *
+	 * @return string
+	 */
+	public static function plugin_url() {
+		return untrailingslashit( plugins_url( '/', __FILE__ ) );
+	}
+
+	/**
+	 * Get the plugin path.
+	 *
+	 * @return string
+	 */
+	public static function plugin_path() {
+		return untrailingslashit( plugin_dir_path( __FILE__ ) );
 	}
 
 }

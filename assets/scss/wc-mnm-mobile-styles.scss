@@ -3,6 +3,108 @@
  */
 $handheld:          568px;
 
+
+.woocommerce-js .mnm_form.cart {
+	.mnm_reset {
+		display: none;
+	}
+	
+	.mnm_button_wrap {
+		.mnm_price, .mnm_message, .mnm_availability, .quantity, .mnm_add_to_cart_button { 
+			display: none !important;
+		}
+	}
+}
+
+.mnm-mobile-container {
+
+	display: none;
+	background: #FFFFFF;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 99999;
+	padding: 1em;
+	overflow: hidden;
+	zoom: 1;
+	box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+
+	-webkit-animation-name: slideInUp;
+	animation-name: slideInUp;
+	-webkit-animation-duration: 0.5s;
+	animation-duration: 0.5s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+
+	.column.col-1 {
+		width: 60%;
+		float: left;
+	}
+
+	.column.col-2 { 
+		width: 40%;
+		float: right;
+		text-align: right;
+
+		.quantity {
+			display: inline-block;
+			float: none;
+		}
+	}
+
+	.mnm_button_wrap {
+
+		.quantity input {
+			max-width: 5em;
+		}
+	}
+
+	.mnm_price .price {
+		font-weight: bold;
+		margin-bottom: 0 !important;
+	}
+
+	.mnm_message {
+		display: block;
+	}
+
+	.mnm_message_content {
+		padding: 0;
+		margin: 0;
+		list-style: none;
+
+		li { 
+			margin-left: 0;
+			margin-right: 0;
+		}
+	}
+
+	&:after {
+		display: table;
+		content: ' ';
+		clear: both;
+	}
+
+	.mnm_availability {
+		font-size: .75em;
+	}
+
+	.mnm_reset {
+		font-size: .75em;
+		margin: .5em 0 0 0;
+	}
+
+	&.valid {
+
+		.mnm_button_wrap {
+			display: block;
+		}
+
+	}
+
+}
+
 /**
  * Handheld
  */
@@ -65,85 +167,16 @@ $handheld:          568px;
 			}
 		}
 
-		.mnm_cart.fixed {
-			.mnm_button_wrap {
-				width: auto !important;
-			}
-		}
 	}
 
 
+	.mnm-mobile-container {
 
-}
-
-.mnm_cart {
-
-	&.fixed {
-		background: #FFFFFF;
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		z-index: 99999;
-		padding: 1em;
-		overflow: hidden;
-		zoom: 1;
-		box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
-
-		-webkit-animation-name: slideInUp;
-		animation-name: slideInUp;
-		-webkit-animation-duration: 0.5s;
-		animation-duration: 0.5s;
-		-webkit-animation-fill-mode: both;
-		animation-fill-mode: both;
-
-		.mnm_button_wrap:nth-child(1) {
+		.column.col-1, .column.col-2 { 
+			float: none;
 			width: 100%;
-			float: left;
-		}
-
-		.mnm_button_wrap:nth-child(2) { 
-			width: 0%;
-			float: right;
-			display: none;
-			text-align: right;
-
-			.quantity {
-				display: inline-block;
-				float: none;
-			}
-		}
-
-		.mnm_price .price {
-			font-weight: bold;
-			margin-bottom: 0 !important;
-		}
-
-		.mnm_message_content {
-			padding: 0;
-			margin-bottom: 0;
-		}
-
-
-		&:after {
-			display: table;
-			content: ' ';
-			clear: both;
-		}
-
-		&.valid {
-
-			.mnm_button_wrap:nth-child(1) {
-				width: 60%;
-			}
-
-			.mnm_button_wrap:nth-child(2) { 
-				display: block;
-				width: 40%;
-			}
-
+			text-align: left;
 		}
 
 	}
-
 }

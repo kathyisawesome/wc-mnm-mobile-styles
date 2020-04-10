@@ -10,32 +10,59 @@
 	$( 'body' )
 		.on( 'wc-mnm-initializing', function( event, container ) {
 
+			var $mobile_footer = $( '#mnm-mobile-container' );
+
 			var $products = container.$mnm_form.find( '.products' ).first();
 			var $scroll_selector = $products.length ? $products : container.$mnm_form.find( 'table tbody' );
 
+			// Hide/Show the footer when form is in view.
 			$(window).on( 'resize scroll', function() {
 				if( $scroll_selector.length && $scroll_selector.isInViewport() ) {
-					container.$mnm_data.toggleClass( 'fixed', true );
-					container.$mnm_message.find('div:first-child').toggleClass( 'woocommerce-info', false );
+					$mobile_footer.show();
 				} else {
-					container.$mnm_data.toggleClass( 'fixed', false );
-					container.$mnm_message.find('div:first-child').toggleClass( 'woocommerce-info', true );
+					$mobile_footer.hide();
 				}
-			});
+			}).trigger('resize');
 
+			// Relay footer add to cart click to form button.
+			$mobile_footer.on( 'click', '.mnm_add_to_cart_button', function( e ) {
+				e.preventDefault();
+				container.$mnm_button.click();
+			} );
+
+			// Relay footer reset to form reset.
+			$mobile_footer.on( 'click', '.mnm_reset', function( e ) {
+				e.preventDefault();
+				container.$mnm_reset.click();
+			} );
+
+
+		} )
+
+		.on( 'wc-mnm-form-updated', function( event, container ) {
+
+			var $mobile_message = $( '#mnm-mobile-container' ).find( '.mnm_message' );
+
+			// Display the status/error messages.
+			if ( container.has_status_messages() || false === container.passes_validation() ) {
+				$mobile_message.html( container.$mnm_message.html() ).show();
+			} else {
+				$mobile_message.hide();
+			}
+
+		} )
+		.on( 'wc-mnm-updated-totals', function( event, container ) {
+			var $mobile_price   = $( '#mnm-mobile-container' ).find( '.mnm_price' );
+			$mobile_price.html( container.$mnm_price.html() );
 
 		} )
 		.on( 'wc-mnm-hide-add-to-cart-button', function( event, container ) {
-			container.$mnm_data.toggleClass( 'valid', false );
-			if( container.$mnm_data.hasClass('fixed') ) {
-				container.$mnm_message.show();
-			}
+			$( '#mnm-mobile-container' ).toggleClass( 'valid', false );
+			$( '#mnm-mobile-container' ).find( '.mnm_add_to_cart_button' ).toggleClass( 'disabled', true ).prop( 'disabled', true );
 		} )
 		.on( 'wc-mnm-display-add-to-cart-button', function( event, container ) {
-			container.$mnm_data.toggleClass( 'valid', true );
-			if( container.$mnm_data.hasClass('fixed') ) {
-				container.$mnm_message.hide();
-			}
+			$( '#mnm-mobile-container' ).toggleClass( 'valid', true );
+			$( '#mnm-mobile-container' ).find( '.mnm_add_to_cart_button' ).toggleClass( 'disabled', false ).prop( 'disabled', false );
 		} );
 
 

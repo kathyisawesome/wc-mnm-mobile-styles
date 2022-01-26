@@ -78,15 +78,6 @@ class WC_MNM_Mobile_Styles {
 
 	}
 
-
-	/**
-	 * Load the script only when needed
-	 */
-	public static function enqueue_script() {
-		
-	}
-
-
 	/**
 	 * Add the mobile template
 	 */

@@ -10,3 +10,7 @@ Experimental mini-extension for [WooCommerce Mix and Match](https://woocommerce.
 
 1. This is proof of concept and not officially supported in any way.
 2. Not ideal for use with Name Your Price or Product Addons.
+
+### Automatic plugin updates
+
+Plugin updates can be enabled by installing the [Git Updater](https://git-updater.com/) plugin.

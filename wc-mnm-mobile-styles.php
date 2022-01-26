@@ -3,7 +3,7 @@
 * Plugin Name: WooCommerce Mix and Match: Mobile Styles
 * Plugin URI: https://woocommerce.com/products/woocommerce-mix-and-match-products/
 * Description: Add some styles for mobile.
-* Version: 1.0.0-beta-2
+* Version: 1.0.0-beta-3
 * Author: Kathy Darling
 * Author URI: http://kathyisawesome.com/
 *
@@ -11,10 +11,10 @@
 * Domain Path: /languages/
 *
 * Requires at least: 5.1.0
-* Tested up to: 5.3.0
+* Tested up to: 5.9.0
 *
-* WC requires at least: 3.7.0
-* WC tested up to: 3.8.0
+* WC requires at least: 5.9.0
+* WC tested up to: 6.1.0
 *
 * GitHub Plugin URI: kathyisawesome/wc-mnm-mobile-styles
 * GitHub Plugin URI: https://github.com/kathyisawesome/wc-mnm-mobile-styles
@@ -52,12 +52,18 @@ class WC_MNM_Mobile_Styles {
 	 */
 	public static function init() {
 
-		/*
+		/**
 		 * Display.
 		 */
-		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'register_scripts' ) );
-		add_action( 'woocommerce_mnm_add_to_cart_wrap', array( __CLASS__, 'add_template_to_footer' ), 99 );
-		
+		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'register_scripts' ), 20 );
+        add_action( 'woocommerce_mix-and-match_add_to_cart', array( __CLASS__, 'add_template_to_footer' ), 99 );
+        
+		/**
+		 * Grouped MNM support.
+		 */      
+        add_action( 'woocommerce_grouped-mnm_add_to_cart', array( __CLASS__, 'grouped_add_template_to_footer' ), 99 );
+        add_filter( 'wc_mnm_grouped_add_to_cart_fragments', array( __CLASS__, 'ajax_load_footer' ), 10, 2 );
+        
 	}
 
 
@@ -90,15 +96,38 @@ class WC_MNM_Mobile_Styles {
 		add_action( 'wp_footer', array( __CLASS__, 'footer_template' ), 99 );
 	}
 
+/**
+	 * Add the mobile template
+	 */
+	public static function grouped_add_template_to_footer() {
+
+        global $product;
+
+        $selection       = get_query_var( 'mnm' );
+        $has_selection   = in_array( intval( $selection ), $product->get_children() );
+        $current_product = wc_get_product( $selection );
+
+        self::$container = $has_selection && $current_product ? $current_product : $product;
+
+		wp_enqueue_script( 'wc_mnm_mobile' );
+
+		add_action( 'wp_footer', array( __CLASS__, 'footer_template' ), 99 );
+	}
+
 	/**
 	 * Add the mobile template
 	 */
-	public static function footer_template() {
+	public static function footer_template( $container = false ) {
+
+        // Default to stashed product.
+        if ( ! $container ) {
+            $container = self::$container;
+        }
 
 		wc_get_template(
 			'single-product/mnm/mobile-footer.php',
 			array(
-				'container' => self::$container,
+				'container' => $container,
 			),
 			'',
 			self::plugin_path() . '/templates/'
@@ -107,6 +136,22 @@ class WC_MNM_Mobile_Styles {
 		self::$container = false;
 
 	}
+
+    /**
+	 * Ajax load the mobile template
+     * 
+     * @param array $fragments array of [element => HTML content]
+     * @param WC_Product_Mix_and_Match $container
+     * @return array
+	 */
+	public static function ajax_load_footer( $fragments, $container ) {
+        ob_start();
+		self::footer_template( $container );
+		$footer = ob_get_clean();
+
+        $fragments[ '#mnm-mobile-container' ] = $footer;
+        return $fragments;
+    }
 
 	/*-----------------------------------------------------------------------------------*/
 	/*  Helper Functions                                                                 */

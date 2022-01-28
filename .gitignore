@@ -31,3 +31,9 @@ Thumbs.db
 # Logs
 /logs
 package-lock.json
+
+# Compiled assets
+assets/js/frontend/*.min.js
+assets/js/backend/*.min.js
+languages/
+none

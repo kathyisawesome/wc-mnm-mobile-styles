@@ -87,16 +87,18 @@ class WC_MNM_Mobile_Styles {
 	/**
 	 * Add the mobile template
 	 */
-	public static function add_template_to_footer( $container ) {
+	public static function add_template_to_footer() {
+
+        global $product;
 
 		wp_enqueue_script( 'wc_mnm_mobile' );
 
-		self::$container = $container;
+		self::$container = $product;
 
 		add_action( 'wp_footer', array( __CLASS__, 'footer_template' ), 99 );
 	}
 
-/**
+	/**
 	 * Add the mobile template
 	 */
 	public static function grouped_add_template_to_footer() {

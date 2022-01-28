@@ -21,54 +21,58 @@ if (!defined('ABSPATH')) {
 }
 
 ?>
-<div id="mnm-mobile-container" class="mnm_form mnm-mobile-container">
+<div id="mnm-mobile-container" class="mnm-mobile-container" style="display:none;">
 
 	<div class="mnm-mobile-content mnm_cart">
 
 	<?php
-	if ( $container->is_purchasable() ) { ?>
+	if ( $container && $container->is_type( 'mix-and-match' ) ) { 
+        
+        if ( $container->is_purchasable() ) { ?>
 
-		<div class="column col-1">
+            <div class="column col-1">
 
-			<div class="mnm_price"><?php echo $container->get_price_html(); ?></div>
+                <div class="mnm_price"><?php echo $container->get_price_html(); ?></div>
 
-			<div class="mnm_message">
-				<ul class="msg mnm_message_content">
-					<li><?php echo wc_mnm_get_quantity_message($container); ?></li>
-				</ul>
-			</div> 
-			<div class="mnm_availability"><?php echo wc_get_stock_html( $container ); ?></div>
+                <div class="mnm_message">
+                    <ul class="msg mnm_message_content">
+                        <li><?php echo wc_mnm_get_quantity_message( $container ); ?></li>
+                    </ul>
+                </div> 
+                <div class="mnm_availability"><?php echo wc_get_stock_html( $container ); ?></div>
 
-		</div><!--.column -->
-	
-		<div class="column col-2">
+            </div><!--.column -->
+        
+            <div class="column col-2">
 
-			<div class="mnm_button_wrap">
-			
-				<?php
+                <div class="mnm_button_wrap">
+                
+                    <?php
 
-				woocommerce_quantity_input(array(
-					'min_value' => $container->is_sold_individually() ? 1 : apply_filters('woocommerce_quantity_input_min', 1, $container),
-					'max_value' => $container->is_sold_individually() ? 1 : apply_filters('woocommerce_quantity_input_max', $container->backorders_allowed() ? '' : $container->get_stock_quantity(), $container),
-					'input_value' => isset($_REQUEST['quantity']) ? wc_stock_amount(wp_unslash($_REQUEST['quantity'])) : $container->get_min_purchase_quantity(), // WPCS: CSRF ok, input var ok.
-				));
+                    woocommerce_quantity_input(array(
+                        'min_value' => $container->is_sold_individually() ? 1 : apply_filters('woocommerce_quantity_input_min', 1, $container),
+                        'max_value' => $container->is_sold_individually() ? 1 : apply_filters('woocommerce_quantity_input_max', $container->backorders_allowed() ? '' : $container->get_stock_quantity(), $container),
+                        'input_value' => isset($_REQUEST['quantity']) ? wc_stock_amount(wp_unslash($_REQUEST['quantity'])) : $container->get_min_purchase_quantity(), // WPCS: CSRF ok, input var ok.
+                    ));
 
-				?>
+                    ?>
 
-				<input type="hidden" name="add-to-cart" value="<?php echo esc_attr($container->get_id()); ?>" />
+                    <input type="hidden" name="add-to-cart" value="<?php echo esc_attr($container->get_id()); ?>" />
 
-				<button class="single_add_to_cart_button mnm_add_to_cart_button button alt"><?php echo $container->single_add_to_cart_text(); ?></button>
+                    <button class="single_add_to_cart_button mnm_add_to_cart_button button alt"><?php echo $container->single_add_to_cart_text(); ?></button>
 
-			</div>
+                </div>
 
-			<a class="mnm_reset" style="" href="#"><?php _e( 'Reset configuration', 'woocommerce-mix-and-match-products' );?></a>            
+                <a class="mnm_reset" style="" href="#"><?php _e( 'Reset configuration', 'wc-mnm-mobile-styles' );?></a>            
 
-		 </div><!--.column -->
-		<?php
-	} else {
-		echo '<div class="mnm_container_unavailable woocommerce-info">' . __('This product is currently unavailable.', 'woocommerce-mix-and-match-products') . '</div>';
-	} ?>	
+            </div><!--.column -->
+            <?php
+        } else {
+            echo '<div class="mnm_container_unavailable">' . __( 'This product is currently unavailable.', 'wc-mnm-mobile-styles') . '</div>';
+        } 
+        
+    }?>	
 
 	</div>
 
-</div><!-- .mnm-mobile-container -->
+</div>

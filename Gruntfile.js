@@ -150,8 +150,7 @@ module.exports = function(grunt) {
 		// Add text domain
 		addtextdomain: {
 			options: {
-				textdomain: '<%= pkg.name %>',    // Project text domain.
-				updateDomains: [ '<%= pkg.name %>', 'woocommerce-mix-and-match-products', 'woocommerce' ]  // List of text domains to replace.
+				textdomain: '<%= pkg.name %>'    // Project text domain.
 			},
 			target: {
 				files: {

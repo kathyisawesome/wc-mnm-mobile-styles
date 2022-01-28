@@ -1,6 +1,6 @@
 <?php
 /*
-* Plugin Name: WooCommerce Mix and Match: Mobile Styles
+* Plugin Name: WooCommerce Mix and Match - Mobile Styles
 * Plugin URI: https://woocommerce.com/products/woocommerce-mix-and-match-products/
 * Description: Turns the Mix and Match counter message into a sticky footer.
 * Version: 1.1.0

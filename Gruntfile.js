@@ -180,8 +180,7 @@ module.exports = function(grunt) {
 			Version: {
 				src: [
 				'readme.txt',
-				'<%= pkg.name %>.php',
-				'includes/class-wc-mix-and-match.php'
+				'<%= pkg.name %>.php'
 				],
 				overwrite: true,
 				replacements: [
@@ -198,8 +197,16 @@ module.exports = function(grunt) {
 					to: "public $version = '<%= pkg.version %>'"
 				},
 				{
-					from: /public \$version      = \'.*.'/m,
-					to: "public $version      = '<%= pkg.version %>'"
+					from: /public \$version = \'.*.'/m,
+					to: "public $version = '<%= pkg.version %>'"
+				},
+				{
+					from: /public static \$version = \'.*.'/m,
+					to: "public static $version = '<%= pkg.version %>'"
+				},
+				{
+					from: /const VERSION = \'.*.'/m,
+					to: "const VERSION = '<%= pkg.version %>'"
 				}
 				]
 			}

@@ -11,6 +11,7 @@ sftp-config.json
 # Grunt
 /node_modules/
 /deploy/
+/build/
 npm-debug.log
 
 # Sass

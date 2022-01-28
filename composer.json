@@ -1,6 +1,6 @@
 {
     "name": "kathyisawesome/wc-mnm-mobile-styles",
-    "description": "WooCommerce Mix and Match Products - Mobile Styles",
+    "description": "Turns the Mix and Match counter message into a sticky footer.",
     "homepage": "https://github.com/kathyisawesome/wc-mnm-mobile-styles",
     "type": "wordpress-plugin",
     "license": "GPL-3.0-or-later"

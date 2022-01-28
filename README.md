@@ -1,5 +1,11 @@
 # WooCommerce Mix and Match - Mobile Styles
 
+### Quickstart
+
+This is a developmental repo. Clone this repo and run `npm install && npm run build`   
+OR    
+[Download latest release](https://github.com/kathyisawesome/wc-mnm-grouped/releases/latest/download/wc-mnm-mobile-styles.zip)    
+
 ### What's This?
 
 Experimental mini-extension for [WooCommerce Mix and Match](https://woocommerce.com/products/woocommerce-mix-and-match-products//) that turns the counter error message into a sticky footer.

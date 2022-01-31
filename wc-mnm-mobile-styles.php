@@ -18,6 +18,7 @@
 *
 * GitHub Plugin URI: kathyisawesome/wc-mnm-mobile-styles
 * GitHub Plugin URI: https://github.com/kathyisawesome/wc-mnm-mobile-styles
+* Release Asset: true
 *
 * Copyright: © 2019 Kathy Darling
 * License: GNU General Public License v3.0

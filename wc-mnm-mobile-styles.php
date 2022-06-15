@@ -53,6 +53,11 @@ class WC_MNM_Mobile_Styles {
 	 */
 	public static function init() {
 
+		// Quietly quit if MNM is not active.
+		if ( ! function_exists( 'wc_mix_and_match' ) ) {
+			return false;
+		}
+
 		/**
 		 * Display.
 		 */
@@ -180,4 +185,4 @@ class WC_MNM_Mobile_Styles {
 	}
 
 }
-add_action( 'woocommerce_mnm_loaded', array( 'WC_MNM_Mobile_Styles', 'init' ) );
+add_action( 'plugins_loaded', array( 'WC_MNM_Mobile_Styles', 'init' ), 20 );

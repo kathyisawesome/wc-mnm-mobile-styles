@@ -36,12 +36,15 @@
 				container.$mnm_reset.click();
 			} );
 
-
 		} )
 
 		.on( 'wc-mnm-form-updated', function( event, container ) {
 
-			var $mobile_message = $( '#mnm-mobile-container' ).find( '.mnm_message' );
+			var $mobile_footer  = $( '#mnm-mobile-container' );
+			var $mobile_message = $mobile_footer.find( '.mnm_message' );
+			var $mobile_reset   = $mobile_footer.find( '.mnm_reset' );
+
+			$( '#mnm-mobile-container' ).find( '.mnm_price' ).html( container.get_status_html() );
 
 			// Display the status/error messages.
 			if ( container.has_status_messages() || false === container.passes_validation() ) {
@@ -50,10 +53,12 @@
 				$mobile_message.hide();
 			}
 
-		} )
-		.on( 'wc-mnm-updated-totals', function( event, container ) {
-			var $mobile_price   = $( '#mnm-mobile-container' ).find( '.mnm_price' );
-			$mobile_price.html( container.$mnm_price.html() );
+			// Hide/Show Reset Link.
+			if ( container.api.get_container_size() > 0 ) {
+				$mobile_reset.show();
+			} else {
+				$mobile_reset.hide();
+			}
 
 		} )
 		.on( 'wc-mnm-hide-add-to-cart-button', function() {

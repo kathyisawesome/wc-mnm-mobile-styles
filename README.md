@@ -4,11 +4,11 @@
 
 This is a developmental repo. Clone this repo and run `npm install && npm run build`   
 OR    
-[Download latest release](https://github.com/kathyisawesome/wc-mnm-mobile-styles/releases/latest/download/wc-mnm-mobile-styles.zip)
+[Download latest release](https://github.com/kathyisawesome/wc-mnm-mobile-styles/releases/latest/)
 
 ### What's This?
 
-Experimental mini-extension for [WooCommerce Mix and Match](https://woocommerce.com/products/woocommerce-mix-and-match-products//) that turns the counter error message into a sticky footer.
+Experimental mini-extension for [WooCommerce Mix and Match](https://woocommerce.com/products/woocommerce-mix-and-match-products/) that turns the counter error message into a sticky footer.
 
 ![A toolbar at the bottom of the screen showing how many items have been selected](https://user-images.githubusercontent.com/507025/79001591-f4321100-7b0b-11ea-8743-a42a4a13a319.png)
 

@@ -13,10 +13,10 @@
  * @author  Kathy Darling
  * @package WooCommerce Mix and Match/Templates
  * @since   1.0.0
- * @version 1.0.0
+ * @version 1.2.1
  */
 // Exit if accessed directly
-if (!defined('ABSPATH')) {
+if ( !defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -57,9 +57,9 @@ if (!defined('ABSPATH')) {
 
                     ?>
 
-                    <input type="hidden" name="add-to-cart" value="<?php echo esc_attr($container->get_id()); ?>" />
+                    <input type="hidden" name="add-to-cart" value="<?php echo esc_attr( $container->get_id() ); ?>" />
 
-                    <button class="single_add_to_cart_button mnm_add_to_cart_button button alt"><?php echo $container->single_add_to_cart_text(); ?></button>
+                    <button name="add-to-cart" value="<?php echo esc_attr( $container->get_id() ); ?>" data-product_id="<?php echo esc_attr( $container->get_id() ); ?>" class="mnm_add_to_cart_button button alt"><?php echo $container->single_add_to_cart_text(); ?></button>
 
                 </div>
 

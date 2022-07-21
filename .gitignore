@@ -39,3 +39,6 @@ assets/js/backend/*.min.js
 assets/css/
 languages/
 none
+
+# Editor
+.vscode/

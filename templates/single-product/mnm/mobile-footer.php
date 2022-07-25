@@ -50,9 +50,9 @@ if ( !defined( 'ABSPATH' ) ) {
                     <?php
 
                     woocommerce_quantity_input(array(
-                        'min_value' => $container->is_sold_individually() ? 1 : apply_filters('woocommerce_quantity_input_min', 1, $container),
-                        'max_value' => $container->is_sold_individually() ? 1 : apply_filters('woocommerce_quantity_input_max', $container->backorders_allowed() ? '' : $container->get_stock_quantity(), $container),
-                        'input_value' => isset($_REQUEST['quantity']) ? wc_stock_amount(wp_unslash($_REQUEST['quantity'])) : $container->get_min_purchase_quantity(), // WPCS: CSRF ok, input var ok.
+                        'min_value' => $container->is_sold_individually() ? 1 : apply_filters( 'woocommerce_quantity_input_min', 1, $container),
+                        'max_value' => $container->is_sold_individually() ? 1 : apply_filters( 'woocommerce_quantity_input_max', $container->backorders_allowed() ? '' : $container->get_stock_quantity(), $container),
+                        'input_value' => isset($_REQUEST['quantity']) ? wc_stock_amount( wp_unslash( $_REQUEST['quantity'] ) ) : $container->get_min_purchase_quantity(), // WPCS: CSRF ok, input var ok.
                     ));
 
                     ?>

@@ -87,6 +87,10 @@ class WC_MNM_Mobile_Styles {
 		wp_enqueue_style( 'wc_mnm_mobile', self::plugin_url() . '/assets/css/frontend/wc-mnm-mobile-styles' . $suffix . '.css', array( 'wc-mnm-frontend' ), self::$version );
 		wp_style_add_data( 'wc_mnm_mobile', 'rtl', 'replace' );
 
+		if ( $suffix ) {
+			wp_style_add_data( 'wc_mnm_mobile', 'suffix', '.min' );
+		}
+
 		wp_register_script( 'wc_mnm_mobile', self::plugin_url() . '/assets/js/frontend/wc-mnm-mobile-styles' . $suffix . '.js', array( 'wc-add-to-cart-mnm' ), self::$version, true );
 
 	}

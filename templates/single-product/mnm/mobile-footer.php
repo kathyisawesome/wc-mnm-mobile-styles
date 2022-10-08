@@ -74,5 +74,6 @@ if ( !defined( 'ABSPATH' ) ) {
     }?>	
 
 	</div>
+    <a href="#mnm-child-items" class="screen-reader-text"><?php esc_html_e( 'Return to edit selections', 'wc-mnm-mobile-styles' ); ?></a>
 
 </div>

@@ -61,7 +61,10 @@ class WC_MNM_Mobile_Styles {
 		 * Display.
 		 */
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'register_scripts' ), 20 );
+		add_action( 'wc_mnm_before_child_items', array( __CLASS__, 'add_target_link' ) );
+		add_action( 'wc_mnm_after_child_items', array( __CLASS__, 'add_skip_link' ), 101 );
         add_action( 'woocommerce_mix-and-match_add_to_cart', array( __CLASS__, 'add_template_to_footer' ), 99 );
+		
         
 		/**
 		 * Grouped MNM support.
@@ -74,7 +77,6 @@ class WC_MNM_Mobile_Styles {
 	/*-----------------------------------------------------------------------------------*/
 	/* Front End Display */
 	/*-----------------------------------------------------------------------------------*/
-
 
 	/**
 	 * Register the scripts and styles
@@ -91,6 +93,24 @@ class WC_MNM_Mobile_Styles {
 
 		wp_register_script( 'wc_mnm_mobile', self::plugin_url() . '/assets/js/frontend/wc-mnm-mobile-styles' . $suffix . '.js', array( 'wc-add-to-cart-mnm' ), self::$version, true );
 
+	}
+	
+	/**
+	 * Add a target element for screen reader.
+	 * 
+	 * @since 1.3.0
+	 */
+	public static function add_target_link() {
+		echo '<div id="mnm-child-items"></div>';
+	}
+		
+	/**
+	 * Add a skip link for screen reader.
+	 * 
+	 * @since 1.3.0
+	 */
+	public static function add_skip_link() {
+		echo '<a href="#mnm-mobile-container" class="screen-reader-text">' . esc_html__( 'Skip to add to cart.', 'wc-mnm-mobile-styles' ) . '</a>';
 	}
 
 	/**

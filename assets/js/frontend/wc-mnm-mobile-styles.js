@@ -70,5 +70,13 @@
 			$( '#mnm-mobile-container' ).find( '.mnm_add_to_cart_button' ).toggleClass( 'disabled', false ).prop( 'disabled', false );
 		} );
 
+	// Variable Mix and Match support.
+	$( '.variable_mnm_form' ).on( 'found_variation', function( event, variation ) { 
+		if ( 'undefined' !== typeof variation.mix_and_match_footer_html ) {
+			var $jQueryObject = $("<div/>").html(variation.mix_and_match_footer_html);
+			$( '#mnm-mobile-container' ).html( $jQueryObject.find( '#mnm-mobile-container' ).contents() );
+		}
+	} );
+
 
 } ) ( jQuery );

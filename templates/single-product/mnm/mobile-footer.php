@@ -13,7 +13,7 @@
  * @author  Kathy Darling
  * @package WooCommerce Mix and Match/Templates
  * @since   1.0.0
- * @version 1.2.1
+ * @version 2.0.0
  */
 // Exit if accessed directly
 if ( !defined( 'ABSPATH' ) ) {
@@ -26,7 +26,7 @@ if ( !defined( 'ABSPATH' ) ) {
 	<div class="mnm-mobile-content mnm_cart">
 
 	<?php
-	if ( $container && $container->is_type( 'mix-and-match' ) ) { 
+	if ( $container && wc_mnm_is_product_container_type( $container ) ) { 
         
         if ( $container->is_purchasable() ) { ?>
 

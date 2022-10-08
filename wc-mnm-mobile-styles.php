@@ -63,7 +63,7 @@ class WC_MNM_Mobile_Styles {
 		/**
 		 * Display.
 		 */
-		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'register_scripts' ), 20 );
+		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'register_scripts' ), 100 );
 		add_action( 'wc_mnm_before_child_items', array( __CLASS__, 'add_target_link' ) );
 		add_action( 'wc_mnm_after_child_items', array( __CLASS__, 'add_skip_link' ), 101 );
         add_action( 'woocommerce_mix-and-match_add_to_cart', array( __CLASS__, 'add_template_to_footer' ), 99 );
@@ -74,6 +74,13 @@ class WC_MNM_Mobile_Styles {
 		 */
 		add_action( 'woocommerce_grouped-mnm_add_to_cart', array( __CLASS__, 'grouped_add_template_to_footer' ), 99 );
 		add_filter( 'wc_mnm_grouped_add_to_cart_fragments', array( __CLASS__, 'ajax_load_footer' ), 10, 2 );
+    
+		/**
+		 * Variable MNM support.
+		 */
+		add_action( 'woocommerce_variable-mix-and-match_add_to_cart', array( __CLASS__, 'add_template_to_footer' ), 99 );
+		add_filter( 'woocommerce_available_variation', array( __CLASS__, 'available_variation' ), 10, 3 );
+
 	}
 
 
@@ -193,6 +200,25 @@ class WC_MNM_Mobile_Styles {
         $fragments[ '#mnm-mobile-container' ] = $footer;
         return $fragments;
     }
+
+	/**
+	 * Add footer HTML to variation data.
+	 * 
+	 * @param array $data
+	 * @param WC_Product_Variable_Mix_and_Match
+	 * @param WC_Product_Mix_and_Match_Variation
+	 */
+	public static function available_variation( $data, $product, $variation ) {
+
+		// @todo - should we always add this? Seems like it could be a lot of data in the HTML.
+		if ( $variation->is_type( 'mix-and-match-variation' ) && $product->is_type( 'variable-mix-and-match' ) ) {
+			$fragments = self::ajax_load_footer( array(), $variation );
+			$data[ 'mix_and_match_footer_html' ] = current( $fragments );
+		}
+
+		return $data;
+
+	}
 
 	/*-----------------------------------------------------------------------------------*/
 	/*  Helper Functions                                                                 */

@@ -16,7 +16,6 @@
 * WC requires at least: 5.9.0
 * WC tested up to: 6.6.0
 *
-* GitHub Plugin URI: kathyisawesome/wc-mnm-mobile-styles
 * GitHub Plugin URI: https://github.com/kathyisawesome/wc-mnm-mobile-styles
 * Release Asset: true
 *

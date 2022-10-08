@@ -34,7 +34,7 @@ if ( !defined( 'ABSPATH' ) ) {
 
                 <div class="mnm_price"><?php echo $container->get_price_html(); ?></div>
 
-                <div class="mnm_message">
+                <div aria-live="polite" role="status" class="mnm_message">
                     <ul class="msg mnm_message_content">
                         <li><?php echo wc_mnm_get_quantity_message( $container ); ?></li>
                     </ul>

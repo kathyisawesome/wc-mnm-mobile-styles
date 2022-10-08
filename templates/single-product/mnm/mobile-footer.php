@@ -68,7 +68,7 @@ if ( !defined( 'ABSPATH' ) ) {
             </div><!--.column -->
             <?php
         } else {
-            echo '<div class="mnm_container_unavailable">' . __( 'This product is currently unavailable.', 'wc-mnm-mobile-styles') . '</div>';
+            echo '<div class="mnm_container_unavailable">' . esc_html__( 'This product is currently unavailable.', 'wc-mnm-mobile-styles' ) . '</div>';
         } 
         
     }?>	

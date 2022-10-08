@@ -31,6 +31,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class WC_MNM_Mobile_Styles {
 
+	const VERSION = '2.0.0';
 	const REQ_MNM_VERSION = '2.2.0-beta.3';
 
 	/**
@@ -84,16 +85,23 @@ class WC_MNM_Mobile_Styles {
 	 * Register the scripts and styles
 	 */
 	public static function register_scripts() {
-		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+		$suffix         = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '': '.min';
+		$style_path    = 'assets/css/frontend/wc-mnm-mobile-styles' . $suffix . '.css';
+		$style_url     = self::plugin_url() . $style_path;
+		$style_version = WC_Mix_and_Match()->get_file_version( self::plugin_path() . $style_path, self::VERSION );
 
-		wp_enqueue_style( 'wc_mnm_mobile', self::plugin_url() . '/assets/css/frontend/wc-mnm-mobile-styles' . $suffix . '.css', array( 'wc-mnm-frontend' ), self::$version );
+		wp_enqueue_style( 'wc_mnm_mobile', $style_url, array( 'wc-mnm-frontend' ), $style_version );
 		wp_style_add_data( 'wc_mnm_mobile', 'rtl', 'replace' );
 
 		if ( $suffix ) {
 			wp_style_add_data( 'wc_mnm_mobile', 'suffix', '.min' );
 		}
 
-		wp_register_script( 'wc_mnm_mobile', self::plugin_url() . '/assets/js/frontend/wc-mnm-mobile-styles' . $suffix . '.js', array( 'wc-add-to-cart-mnm' ), self::$version, true );
+		$script_path    = 'assets/js/frontend/wc-mnm-mobile-styles' . $suffix . '.js';
+		$script_url     = self::plugin_url() . $script_path;
+		$script_version = WC_Mix_and_Match()->get_file_version( self::plugin_path() . $script_path, self::VERSION );
+
+		wp_register_script( 'wc_mnm_mobile', $script_url, array( 'wc-add-to-cart-mnm' ), $script_version, true );
 
 	}
 	
@@ -196,7 +204,7 @@ class WC_MNM_Mobile_Styles {
 	 * @return string
 	 */
 	public static function plugin_url() {
-		return untrailingslashit( plugins_url( '/', __FILE__ ) );
+		return trailingslashit( plugins_url( '/', __FILE__ ) );
 	}
 
 	/**
@@ -205,7 +213,7 @@ class WC_MNM_Mobile_Styles {
 	 * @return string
 	 */
 	public static function plugin_path() {
-		return untrailingslashit( plugin_dir_path( __FILE__ ) );
+		return trailingslashit( plugin_dir_path( __FILE__ ) );
 	}
 
 }

@@ -31,6 +31,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class WC_MNM_Mobile_Styles {
 
+	const REQ_MNM_VERSION = '2.2.0-beta.3';
+
 	/**
 	 * Plugin version.
 	 *
@@ -52,8 +54,8 @@ class WC_MNM_Mobile_Styles {
 	 */
 	public static function init() {
 
-		// Quietly quit if MNM is not active.
-		if ( ! function_exists( 'wc_mix_and_match' ) ) {
+		// Quietly quit if Mix and Match is not active or below 2.0.
+		if ( ! function_exists( 'wc_mix_and_match' ) || version_compare( wc_mix_and_match()->version, self::REQ_MNM_VERSION ) < 0 ) {
 			return false;
 		}
 

@@ -9,10 +9,18 @@ $handheld:          568px;
 		display: none;
 	}
 	
+	.mnm_status, .single_add_to_cart_button, .mnm_reset {
+		display: none !important;
+	}
+
 	.mnm_button_wrap {
-		.mnm_price, .mnm_message, .mnm_availability, .quantity, .mnm_add_to_cart_button { 
+		.quantity  { 
 			display: none !important;
 		}
+	}
+
+	&.variable_mnm_form .variations_button .quantity {
+		display: none !important;
 	}
 }
 
@@ -101,6 +109,11 @@ $handheld:          568px;
 			display: block;
 		}
 
+	}
+
+	button.single_add_to_cart_button,
+	button[name=add-to-cart] {
+		margin-top: 0;
 	}
 
 }

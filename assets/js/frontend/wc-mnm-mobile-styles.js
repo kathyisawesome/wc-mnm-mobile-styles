@@ -72,11 +72,20 @@
 			$mobile_reset.hide();
 		}
 	} );
+
 	// Variable Mix and Match support.
-	$( '.variable_mnm_form' ).on( 'found_variation', function( event, variation ) { 
+	$( '.variable_mnm_form' ).on( 'wc_mnm_variation_found', function( event, variation ) { 
 		if ( 'undefined' !== typeof variation.mix_and_match_footer_html ) {
-			var $jQueryObject = $("<div/>").html(variation.mix_and_match_footer_html);
+		
+			var $jQueryObject = $( '<div/>' ).html(variation.mix_and_match_footer_html);
 			$( '#mnm-mobile-container' ).html( $jQueryObject.find( '#mnm-mobile-container' ).contents() );
+
+			var container = $(event.currentTarget).wc_get_mnm_script();
+
+			if ( 'undefined' !== typeof container && false !== container ) {
+				$( document ).trigger( 'wc-mnm-update-mobile-footer', [ container ] );
+			}
+			
 		}
 	} );
 

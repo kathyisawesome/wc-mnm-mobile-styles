@@ -63,7 +63,7 @@ if ( !defined( 'ABSPATH' ) ) {
 
                 </div>
 
-                <a class="mnm_reset" style="" href="#"><?php _e( 'Reset configuration', 'wc-mnm-mobile-styles' );?></a>            
+                <a class="mnm_reset" style="" href="#"><?php _e( 'Clear selection', 'wc-mnm-mobile-styles' );?></a>            
 
             </div><!--.column -->
             <?php

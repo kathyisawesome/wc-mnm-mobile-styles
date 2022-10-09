@@ -6,8 +6,8 @@
 		var viewportBottom = viewportTop + $(window).height();return elementBottom > viewportTop && elementTop < viewportBottom;
 	};
 
-	// Hook into Mix and Match.
-	$( 'body' )
+	// Listen for Mix and Match events.
+	$( document )
 		.on( 'wc-mnm-initializing', function( event, container ) {
 
 			var $mobile_footer = $( '#mnm-mobile-container' );

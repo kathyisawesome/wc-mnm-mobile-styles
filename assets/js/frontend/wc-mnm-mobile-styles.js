@@ -37,29 +37,8 @@
 			} );
 
 		} )
-
 		.on( 'wc-mnm-form-updated', function( event, container ) {
-
-			var $mobile_footer  = $( '#mnm-mobile-container' );
-			var $mobile_message = $mobile_footer.find( '.mnm_message' );
-			var $mobile_reset   = $mobile_footer.find( '.mnm_reset' );
-
-			$( '#mnm-mobile-container' ).find( '.mnm_price' ).html( container.get_status_html() );
-
-			// Display the status/error messages.
-			if ( container.has_status_messages() || false === container.passes_validation() ) {
-				$mobile_message.html( container.$mnm_message.html() ).show();
-			} else {
-				$mobile_message.hide();
-			}
-
-			// Hide/Show Reset Link.
-			if ( container.api.get_container_size() > 0 ) {
-				$mobile_reset.show();
-			} else {
-				$mobile_reset.hide();
-			}
-
+			$( document ).trigger( 'wc-mnm-update-mobile-footer', [ container ] );
 		} )
 		.on( 'wc-mnm-hide-add-to-cart-button', function() {
 			$( '#mnm-mobile-container' ).toggleClass( 'valid', false );
@@ -70,6 +49,29 @@
 			$( '#mnm-mobile-container' ).find( '.mnm_add_to_cart_button' ).toggleClass( 'disabled', false ).prop( 'disabled', false );
 		} );
 
+	// Update the footer content.
+	$( document ).on( 'wc-mnm-update-mobile-footer', function( event, container ) { 
+
+		var $mobile_footer  = $( '#mnm-mobile-container' );
+		var $mobile_message = $mobile_footer.find( '.mnm_message' );
+		var $mobile_reset   = $mobile_footer.find( '.mnm_reset' );
+
+		$( '#mnm-mobile-container' ).find( '.mnm_price' ).html( container.get_status_html() );
+
+		// Display the status/error messages.
+		if ( container.has_status_messages() || false === container.passes_validation() ) {
+			$mobile_message.html( container.$mnm_message.html() ).show();
+		} else {
+			$mobile_message.hide();
+		}
+
+		// Hide/Show Reset Link.
+		if ( container.api.get_container_size() > 0 ) {
+			$mobile_reset.show();
+		} else {
+			$mobile_reset.hide();
+		}
+	} );
 	// Variable Mix and Match support.
 	$( '.variable_mnm_form' ).on( 'found_variation', function( event, variation ) { 
 		if ( 'undefined' !== typeof variation.mix_and_match_footer_html ) {

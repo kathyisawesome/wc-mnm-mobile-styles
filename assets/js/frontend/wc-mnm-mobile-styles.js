@@ -17,7 +17,7 @@
 
 			// Hide/Show the footer when form is in view.
 			$(window).on( 'resize scroll', function() {
-				if( $scroll_selector.length && $scroll_selector.isInViewport() ) {
+				if( $scroll_selector.length && $mobile_footer.has( ':visible' ) && $scroll_selector.isInViewport() ) {
 					$mobile_footer.show();
 				} else {
 					$mobile_footer.hide();

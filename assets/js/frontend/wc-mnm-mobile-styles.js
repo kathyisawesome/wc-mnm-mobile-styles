@@ -12,7 +12,7 @@
 
 			var $mobile_footer = $( '#mnm-mobile-container' );
 
-			var $products = container.$mnm_form.find( '.mnm_child_products' ).first();
+			var $products = container.$mnm_form;
 			var $scroll_selector = $products.length ? $products : container.$mnm_form.find( 'table tbody' );
 
 			// Hide/Show the footer when form is in view.

@@ -45,14 +45,12 @@ $handheld:          568px;
 	-webkit-animation-fill-mode: both;
 	animation-fill-mode: both;
 
-	.column.col-1 {
-		width: 60%;
-		float: left;
+	.mnm-mobile-content {
+		display: flex;
+		justify-content: space-between;
 	}
 
 	.column.col-2 { 
-		width: 40%;
-		float: right;
 		text-align: right;
 
 		.quantity {
@@ -184,10 +182,12 @@ $handheld:          568px;
 
 
 	.mnm-mobile-container {
+		
+		.mnm-mobile-content {
+			display: block;
+		}
 
-		.column.col-1, .column.col-2 { 
-			float: none;
-			width: 100%;
+		.column.col-2 { 
 			text-align: left;
 		}
 

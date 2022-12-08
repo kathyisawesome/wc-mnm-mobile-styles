@@ -93,5 +93,9 @@
 		}
 	} );
 
+	// Variable Mix and Match support.
+	$( document ).on( 'wc_mnm_variation_reset', '.variable_mnm_form', function() {
+		$( '#mnm-mobile-container' ).empty().hide();
+	});
 
 } ) ( jQuery );

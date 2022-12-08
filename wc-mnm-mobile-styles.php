@@ -66,13 +66,13 @@ class WC_MNM_Mobile_Styles {
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'register_scripts' ), 100 );
 		add_action( 'wc_mnm_before_child_items', array( __CLASS__, 'add_target_link' ) );
 		add_action( 'wc_mnm_after_child_items', array( __CLASS__, 'add_skip_link' ), 101 );
+		// Load template.
         add_action( 'woocommerce_mix-and-match_add_to_cart', array( __CLASS__, 'add_template_to_footer' ), 99 );
 		
 		/**
 		 * Grouped MNM support.
 		 */
-		add_action( 'woocommerce_grouped-mnm_add_to_cart', array( __CLASS__, 'grouped_add_template_to_footer' ), 99 );
-		add_filter( 'wc_mnm_grouped_add_to_cart_fragments', array( __CLASS__, 'ajax_load_footer' ), 10, 2 );
+		add_action( 'woocommerce_grouped-mnm_add_to_cart', array( __CLASS__, 'add_template_to_footer' ), 99 );
     
 		/**
 		 * Variable MNM support.
@@ -107,7 +107,7 @@ class WC_MNM_Mobile_Styles {
 		$script_url     = self::plugin_url() . $script_path;
 		$script_version = WC_Mix_and_Match()->get_file_version( self::plugin_path() . $script_path, self::VERSION );
 
-		wp_register_script( 'wc_mnm_mobile', $script_url, array( 'wc-add-to-cart-mnm' ), $script_version, true );
+		wp_register_script( 'wc_mnm_mobile', $script_url, array( 'wc-add-to-cart-mnm', 'wp-util' ), $script_version, true );
 
 	}
 	
@@ -129,93 +129,27 @@ class WC_MNM_Mobile_Styles {
 		echo '<a href="#mnm-mobile-container" class="screen-reader-text">' . esc_html__( 'Skip to add to cart.', 'wc-mnm-mobile-styles' ) . '</a>';
 	}
 
+	
 	/**
 	 * Add the mobile template
 	 */
 	public static function add_template_to_footer() {
-
-        global $product;
-
 		wp_enqueue_script( 'wc_mnm_mobile' );
-
-		self::$container = $product;
-
 		add_action( 'wp_footer', array( __CLASS__, 'footer_template' ), 99 );
 	}
+
 
 	/**
 	 * Add the mobile template
 	 */
-	public static function grouped_add_template_to_footer() {
-
-        global $product;
-
-        $selection       = get_query_var( 'mnm' );
-        $has_selection   = in_array( intval( $selection ), $product->get_children() );
-        $current_product = wc_get_product( $selection );
-
-        self::$container = $has_selection && $current_product ? $current_product : $product;
-
-		wp_enqueue_script( 'wc_mnm_mobile' );
-
-		add_action( 'wp_footer', array( __CLASS__, 'footer_template' ), 99 );
-	}
-
-	/**
-	 * Add the mobile template
-	 */
-	public static function footer_template( $container = false ) {
-
-        // Default to stashed product.
-        if ( ! $container ) {
-            $container = self::$container;
-        }
+	public static function footer_template( $container = false, $container_item = false, $subscription = 'false', $context = 'add-to-cart' ) {
 
 		wc_get_template(
-			'single-product/mnm/mobile-footer.php',
-			array(
-				'container' => $container,
-			),
+			'single-product/mnm/mobile-footer-tmpl.php',
+			array(),
 			'',
 			self::plugin_path() . '/templates/'
 		);
-
-		self::$container = false;
-
-	}
-
-    /**
-	 * Ajax load the mobile template
-     * 
-     * @param array $fragments array of [element => HTML content]
-     * @param WC_Product_Mix_and_Match $container
-     * @return array
-	 */
-	public static function ajax_load_footer( $fragments, $container ) {
-        ob_start();
-		self::footer_template( $container );
-		$footer = ob_get_clean();
-
-        $fragments[ '#mnm-mobile-container' ] = $footer;
-        return $fragments;
-    }
-
-	/**
-	 * Add footer HTML to variation data.
-	 * 
-	 * @param array $data
-	 * @param WC_Product_Variable_Mix_and_Match
-	 * @param WC_Product_Mix_and_Match_Variation
-	 */
-	public static function available_variation( $data, $product, $variation ) {
-
-		// @todo - should we always add this? Seems like it could be a lot of data in the HTML.
-		if ( $variation->is_type( 'mix-and-match-variation' ) && $product->is_type( 'variable-mix-and-match' ) ) {
-			$fragments = self::ajax_load_footer( array(), $variation );
-			$data[ 'mix_and_match_footer_html' ] = current( $fragments );
-		}
-
-		return $data;
 
 	}
 

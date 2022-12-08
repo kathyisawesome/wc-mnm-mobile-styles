@@ -10,8 +10,29 @@
 	$( document )
 		.on( 'wc-mnm-initializing', function( event, container ) {
 
+			// Render the footer.
 			var $mobile_footer = $( '#mnm-mobile-container' );
+			var template       = wp.template( 'wc-mnm-mobile-footer' );
+			var button_text    = container.$mnm_data.data( 'button_text' );
+			var stock_html     = container.$mnm_data.data( 'stock_html' );
+			var context     = container.$mnm_data.data( 'context' );
+			
+			let $template_html = template( {
+				is_purchasable    : container.api.is_purchasable(),
+				is_in_stock       : container.api.is_in_stock(),
+				min_container_size: container.api.get_min_container_size(),
+				max_container_size: container.api.get_max_container_size(),
+				container_id      : container.container_id,
+				button_text       : button_text,
+				stock_html        : stock_html,
+				context           : context
+			} );
+			$template_html = $template_html.replace( '/*<![CDATA[*/', '' );
+			$template_html = $template_html.replace( '/*]]>*/', '' );
+	  
+			$mobile_footer.html( $template_html );
 
+			// Hide/Show the footer when form is in view.
 			var $products = container.$mnm_form;
 			var $scroll_selector = $products.length ? $products : container.$mnm_form.find( 'table tbody' );
 
@@ -69,22 +90,6 @@
 			$mobile_reset.show();
 		} else {
 			$mobile_reset.hide();
-		}
-	} );
-
-	// Variable Mix and Match support.
-	$( '.variable_mnm_form' ).on( 'wc_mnm_variation_found', function( event, variation ) { 
-		if ( 'undefined' !== typeof variation.mix_and_match_footer_html ) {
-		
-			var $jQueryObject = $( '<div/>' ).html(variation.mix_and_match_footer_html);
-			$( '#mnm-mobile-container' ).html( $jQueryObject.find( '#mnm-mobile-container' ).contents() );
-
-			var container = $(event.currentTarget).wc_get_mnm_script();
-
-			if ( 'undefined' !== typeof container && false !== container ) {
-				$( document ).trigger( 'wc-mnm-update-mobile-footer', [ container ] );
-			}
-			
 		}
 	} );
 

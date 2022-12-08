@@ -72,11 +72,16 @@
 	// Update the footer content.
 	$( document ).on( 'wc-mnm-update-mobile-footer', function( event, container ) { 
 
-		var $mobile_footer  = $( '#mnm-mobile-container' );
-		var $mobile_message = $mobile_footer.find( '.mnm_message' );
-		var $mobile_reset   = $mobile_footer.find( '.mnm_reset' );
+		var $mobile_footer   = $( '#mnm-mobile-container' );
+		var $mobile_message  = $mobile_footer.find( '.mnm_message' );
+		var $mobile_reset    = $mobile_footer.find( '.mnm_reset' );
+		var $mobile_progress = $mobile_footer.find( 'progress.mnm-container-progress' );
 
+		// Display the price and status counter.
 		$( '#mnm-mobile-container' ).find( '.mnm_price' ).html( container.get_status_html() );
+
+		// Update the progress bar value.
+		$mobile_progress.val( container.api.get_container_size() );
 
 		// Display the status/error messages.
 		if ( container.has_status_messages() || false === container.passes_validation() ) {

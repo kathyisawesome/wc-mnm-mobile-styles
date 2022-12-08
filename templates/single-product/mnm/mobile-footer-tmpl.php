@@ -27,6 +27,10 @@ defined( 'ABSPATH' ) || exit;
 
                 <button type="button" class="mnm_reset button alt" style="display: none;"><?php echo esc_html_x( 'Clear selection', '[Frontend]', 'wc-mnm-mobile-styles' ); ?></button>
 
+                <# if ( data.min_container_size === data.max_container_size ) { #>
+                    <progress class="mnm-container-progress" max="{{{ data.max_container_size }}}" value=""></progress>
+                <# } #>
+
                 <div aria-live="polite" role="status" class="mnm_message">
                     <ul class="msg mnm_message_content">
                         <li></li>

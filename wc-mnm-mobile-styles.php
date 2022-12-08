@@ -78,7 +78,6 @@ class WC_MNM_Mobile_Styles {
 		 * Variable MNM support.
 		 */
 		add_action( 'woocommerce_variable-mix-and-match_add_to_cart', array( __CLASS__, 'add_template_to_footer' ), 99 );
-		add_filter( 'woocommerce_available_variation', array( __CLASS__, 'available_variation' ), 10, 3 );
 
 	}
 

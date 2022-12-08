@@ -35,14 +35,6 @@ class WC_MNM_Mobile_Styles {
 	const REQ_MNM_VERSION = '2.2.0-beta.3';
 
 	/**
-	 * Plugin version.
-	 *
-	 * @var string
-	 */
-	public static $version = '2.0.0-beta.3';
-
-
-	/**
 	 * The Mix and Match product object.
 	 *
 	 * @var string

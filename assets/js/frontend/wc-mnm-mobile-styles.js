@@ -24,7 +24,7 @@
 			}).trigger('resize.wc-mnm-mobile-styles');
 
 			// Relay footer add to cart click to form button.
-			$mobile_footer.on( 'click', '.mnm_add_to_cart_button', function( e ) {
+			$mobile_footer.on( 'click', '.single_add_to_cart_button', function( e ) {
 				e.preventDefault();
 				container.$mnm_button.click();
 			} );
@@ -41,11 +41,11 @@
 		} )
 		.on( 'wc-mnm-hide-add-to-cart-button', function() {
 			$( '#mnm-mobile-container' ).toggleClass( 'valid', false );
-			$( '#mnm-mobile-container' ).find( '.mnm_add_to_cart_button' ).toggleClass( 'disabled', true ).prop( 'disabled', true );
+			$( '#mnm-mobile-container' ).find( '.single_add_to_cart_button' ).toggleClass( 'disabled', true ).prop( 'disabled', true );
 		} )
 		.on( 'wc-mnm-display-add-to-cart-button', function() {
 			$( '#mnm-mobile-container' ).toggleClass( 'valid', true );
-			$( '#mnm-mobile-container' ).find( '.mnm_add_to_cart_button' ).toggleClass( 'disabled', false ).prop( 'disabled', false );
+			$( '#mnm-mobile-container' ).find( '.single_add_to_cart_button' ).toggleClass( 'disabled', false ).prop( 'disabled', false );
 		} );
 
 	// Update the footer content.

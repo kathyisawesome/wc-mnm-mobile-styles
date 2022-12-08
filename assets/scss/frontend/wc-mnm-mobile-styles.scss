@@ -34,7 +34,8 @@ $handheld:          568px;
 	right: 0;
 	z-index: 99999;
 	padding: 1em;
-	overflow: hidden;
+	overflow: visible;
+
 	zoom: 1;
 	box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
 
@@ -45,30 +46,26 @@ $handheld:          568px;
 	-webkit-animation-fill-mode: both;
 	animation-fill-mode: both;
 
-	.mnm-mobile-content {
-		display: flex;
-		justify-content: space-between;
-	}
-
-	.column.col-2 { 
-		text-align: right;
-
-		.quantity {
-			display: inline-block;
-			float: none;
-		}
-	}
-
 	.mnm_button_wrap {
+
+		&:after {
+			display: table;
+			content: ' ';
+			clear: both;
+		}
+
+		display: flex;
 
 		.quantity input {
 			max-width: 5em;
+			margin-right: .5em;
 		}
 	}
 
-	.mnm_price .price {
+
+	.mnm_price {
+		display: inline-block;
 		font-weight: bold;
-		margin-bottom: 0 !important;
 	}
 
 	.mnm_message {
@@ -77,19 +74,13 @@ $handheld:          568px;
 
 	.mnm_message_content {
 		padding: 0;
-		margin: 0;
+		margin: 0 0 1em 0;
 		list-style: none;
 
 		li { 
 			margin-left: 0;
 			margin-right: 0;
 		}
-	}
-
-	&:after {
-		display: table;
-		content: ' ';
-		clear: both;
 	}
 
 	.mnm_availability {
@@ -101,10 +92,15 @@ $handheld:          568px;
 		margin: .5em 0 0 0;
 	}
 
+	.mnm_button_wrap .button {
+		font-size: 1.6rem;
+		padding: 1rem 1.2rem;
+	}
+
 	&.valid {
 
 		.mnm_button_wrap {
-			display: block;
+			display: flex;
 		}
 
 	}
@@ -116,80 +112,27 @@ $handheld:          568px;
 
 }
 
+
 /**
- * Handheld
+ * Desktop
  */
-@media (max-width: $handheld) {
-
-	.mnm_form {
-
-		&.layout_tabular {
-
-			.mnm_table {
-				thead { display: none; }
-
-				tr {
-					max-width: 300px;
-					display: block;
-					margin: 0 auto;
-				}
-
-				td {
-					padding-left: 0 !important;
-					padding-right: 0 !important;
-					padding-top: 0 !important;
-					display: block;
-					vertical-align: top;
-					line-height: 1.4;
-					background: none;
-				}
-
-				.product-thumbnail {
-					display: block;
-					width: 100%;
-
-					.mnm_image {
-						width: 100%;
-						padding-right: 0;
-						margin: 0 auto;
-					}
-				}
-
-				.product-details {
-					display: inline-block;
-					width: 65%;
-
-					dl.variation, .price {
-						margin-top: 0;
-						font-size: .75;
-					}
-				}
-
-				.product-quantity {
-					display: inline-block;
-					width: 35%;
-					text-align: right;
-
-					.qty {
-						width: 4em;
-					}
-
-				}
-			}
-		}
-
-	}
-
+ @media (min-width: $handheld) {
 
 	.mnm-mobile-container {
-		
 		.mnm-mobile-content {
-			display: block;
+			display: flex;
+			justify-content: space-between;
 		}
 
 		.column.col-2 { 
-			text-align: left;
-		}
+			text-align: right;
 
+			.quantity {
+				display: inline-block;
+				float: none;
+			}
+		}
 	}
+
+}
 }

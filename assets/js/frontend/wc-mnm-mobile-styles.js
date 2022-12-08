@@ -15,14 +15,13 @@
 			var $products = container.$mnm_form;
 			var $scroll_selector = $products.length ? $products : container.$mnm_form.find( 'table tbody' );
 
-			// Hide/Show the footer when form is in view.
-			$(window).on( 'resize scroll', function() {
-				if( $scroll_selector.length && $mobile_footer.has( ':visible' ) && $scroll_selector.isInViewport() ) {
+			$(window).on( 'resize.wc-mnm-mobile-styles scroll.wc-mnm-mobile-styles', function() {
+				if( $scroll_selector.length && $mobile_footer.children().length && $scroll_selector.isInViewport() ) {
 					$mobile_footer.show();
 				} else {
 					$mobile_footer.hide();
 				}
-			}).trigger('resize');
+			}).trigger('resize.wc-mnm-mobile-styles');
 
 			// Relay footer add to cart click to form button.
 			$mobile_footer.on( 'click', '.mnm_add_to_cart_button', function( e ) {

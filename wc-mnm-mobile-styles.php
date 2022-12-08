@@ -64,8 +64,14 @@ class WC_MNM_Mobile_Styles {
 		 * Display.
 		 */
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'register_scripts' ), 100 );
+
+		// Accessibility.
 		add_action( 'wc_mnm_before_child_items', array( __CLASS__, 'add_target_link' ) );
 		add_action( 'wc_mnm_after_child_items', array( __CLASS__, 'add_skip_link' ), 101 );
+
+		// Switch context.
+		add_action( 'wc_mnm_container_data_attributes', array( __CLASS__, 'container_data_attributes' ), 10, 2 );
+
 		// Load template.
         add_action( 'woocommerce_mix-and-match_add_to_cart', array( __CLASS__, 'add_template_to_footer' ), 99 );
 		
@@ -78,6 +84,11 @@ class WC_MNM_Mobile_Styles {
 		 * Variable MNM support.
 		 */
 		add_action( 'woocommerce_variable-mix-and-match_add_to_cart', array( __CLASS__, 'add_template_to_footer' ), 99 );
+
+		/**
+		 * Subscription editing.
+		 */
+		add_action( 'wc_mnm_subscription_editing_enqueue_scripts', array( __CLASS__, 'add_template_to_footer' ), 99 );
 
 	}
 
@@ -128,7 +139,26 @@ class WC_MNM_Mobile_Styles {
 		echo '<a href="#mnm-mobile-container" class="screen-reader-text">' . esc_html__( 'Skip to add to cart.', 'wc-mnm-mobile-styles' ) . '</a>';
 	}
 
-	
+	/**
+	 * Show different button depending on context
+	 * 
+	 * @since 2.0.0
+	 * 
+     * @param WC_Product_Mix_and_Match $container
+	 * @param WC_Order_Item $order_item - FALSE in add-to-cart context
+	 * @param WC_Subscription $subscription - FALSE in add-to-cart context
+	 * @param string $context
+	 */
+	public static function container_data_attributes( $attributes, $container ) {
+
+		$attributes[ 'button_text' ] = $container->single_add_to_cart_text();
+		$attributes[ 'stock_html' ]  = wc_get_stock_html( $container );
+
+		return $attributes;
+
+	}
+
+
 	/**
 	 * Add the mobile template
 	 */

@@ -43,9 +43,17 @@ defined( 'ABSPATH' ) || exit;
             <div class="column col-2">
 
                 <div class="mnm_button_wrap">
-
+                    
                     <button data-product_id="{{{ data.container_id }}}" class="single_add_to_cart_button button alt">{{{ data.button_text }}}</button>
-                
+
+                    <# if ( data.context === 'edit' ) { #>
+                        <div class="wc-mnm-edit-subscription-actions woocommerce-cart-form">
+                            <div class="actions">
+                            <button class="button wc-mnm-cancel-edit"><?php echo esc_html_x( 'Cancel edit', '[Frontend]', 'wc-mnm-mobile-styles' ); ?></button>
+                            </div>
+                        </div>
+
+                    <# } #>
                 </div>
 
             </div><!--.column -->

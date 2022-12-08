@@ -56,6 +56,12 @@
 				container.$mnm_reset.trigger('click');
 			} );
 
+			// Relay cancel to form cancel for subscription editing.
+			$mobile_footer.on( 'click', '.wc-mnm-cancel-edit', function( e ) {
+				e.preventDefault();
+				$( '.woocommerce-MyAccount-content .wc-mnm-cancel-edit' ).trigger( 'click' );
+			} );
+
 		} )
 		.on( 'wc-mnm-form-updated', function( event, container ) {
 			$( document ).trigger( 'wc-mnm-update-mobile-footer', [ container ] );

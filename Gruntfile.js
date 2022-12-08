@@ -342,8 +342,10 @@ module.exports = function(grunt) {
         ]
     );
 
-	grunt.registerTask( 'dev', [ 'jshint', 'uglify', 'sass' ] );
-	grunt.registerTask( 'build', [ 'replace', 'assets', 'addtextdomain', 'makepot' ] );
-	grunt.registerTask( 'release', [ 'build', 'zip', 'clean' ] );
+	grunt.registerTask( 'dev', [ 'replace', 'assets' ] );
+	grunt.registerTask( 'build', [ 'dev', 'addtextdomain', 'makepot' ] );
+	grunt.registerTask( 'prerelease', [ 'build', 'zip', 'clean' ] );
+	grunt.registerTask( 'release', [ 'replace', 'assets', 'addtextdomain', 'makepot', 'build', 'zip', 'clean' ] );
+
 
 };

@@ -26,13 +26,13 @@
 			// Relay footer add to cart click to form button.
 			$mobile_footer.on( 'click', '.single_add_to_cart_button', function( e ) {
 				e.preventDefault();
-				container.$mnm_button.click();
+				container.$mnm_button.trigger('click');
 			} );
 
 			// Relay footer reset to form reset.
 			$mobile_footer.on( 'click', '.mnm_reset', function( e ) {
 				e.preventDefault();
-				container.$mnm_reset.click();
+				container.$mnm_reset.trigger('click');
 			} );
 
 		} )

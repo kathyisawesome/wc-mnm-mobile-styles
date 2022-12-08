@@ -62,6 +62,10 @@ $handheld:          568px;
 		}
 	}
 
+	button:disabled,
+	button.disabled {
+		opacity: 20%;
+	}
 
 	.mnm_price {
 		display: inline-block;

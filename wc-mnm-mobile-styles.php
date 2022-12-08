@@ -113,7 +113,7 @@ class WC_MNM_Mobile_Styles {
 	/**
 	 * Add a target element for screen reader.
 	 * 
-	 * @since 1.3.0
+	 * @since 2.0.0
 	 */
 	public static function add_target_link() {
 		echo '<div id="mnm-child-items"></div>';
@@ -122,7 +122,7 @@ class WC_MNM_Mobile_Styles {
 	/**
 	 * Add a skip link for screen reader.
 	 * 
-	 * @since 1.3.0
+	 * @since 2.0.0
 	 */
 	public static function add_skip_link() {
 		echo '<a href="#mnm-mobile-container" class="screen-reader-text">' . esc_html__( 'Skip to add to cart.', 'wc-mnm-mobile-styles' ) . '</a>';

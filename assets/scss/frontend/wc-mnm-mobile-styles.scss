@@ -1,8 +1,9 @@
+@import '../mixins.scss';
+
 /**
  * Variables
  */
 $handheld:          568px;
-
 
 .woocommerce-js .mnm_form.cart {
 	.mnm_reset {
@@ -92,13 +93,33 @@ $handheld:          568px;
 	}
 
 	.mnm_reset {
-		font-size: .75em;
-		margin: .5em 0 0 0;
+		font-size: 0 !important;
+		padding: 0 !important;
+		margin: 0;
+		background: var( --wc-subtext,  #333 );
+		color: var( --wc-primary-text, #FFF );
+		border-radius: 100%;
+
+		opacity: 70%;
+
+		&:hover {
+			opacity: 100%;
+		}
+
+		&:after {
+			margin: 0;
+			font-size: initial;
+			padding: .5em;
+		}
 	}
 
 	.mnm_button_wrap .button {
 		font-size: 1.6rem;
 		padding: 1rem 1.2rem;
+	}
+
+	.wc-mnm-cancel-edit {
+		margin-left: .5em;
 	}
 
 	&.valid {
@@ -139,4 +160,10 @@ $handheld:          568px;
 	}
 
 }
+
+/**
+ * Subscription editing.
+ */
+.woocommerce-view-subscription .mnm-mobile-container .quantity {
+	display: none; 
 }

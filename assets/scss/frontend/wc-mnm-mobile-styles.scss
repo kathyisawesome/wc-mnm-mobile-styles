@@ -136,7 +136,7 @@ $handheld:          568px;
 	}
 
 	.mnm_button_wrap .button {
-		font-size: 1.6rem;
+		font-size: 1.1rem;
 		padding: 1rem 1.2rem;
 	}
 
@@ -169,6 +169,10 @@ $handheld:          568px;
 		.mnm-mobile-content {
 			display: flex;
 			justify-content: space-between;
+
+			.mnm_button_wrap .button {
+				font-size: 1.6rem;
+			}
 		}
 
 		.column.col-2 { 

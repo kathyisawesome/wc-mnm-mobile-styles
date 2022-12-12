@@ -109,4 +109,19 @@
 		$( '#mnm-mobile-container' ).empty().hide();
 	});
 
+
+	/**
+	 * All Products for Subscriptions patch for forced subscription scheme.
+	 */
+	$( document ).on ( 'wcsatt-updated-mnm-subscription-totals', '.mnm_form', function( event, container, MNM_Integration ) {
+
+		const $mobile_footer_price       = $( '#mnm-mobile-container' ).find( '.mnm_price .price' );
+		const container_price_html       = container.get_price_html();
+		const container_price_inner_html = $( container_price_html ).html();
+
+		// If only a single option is present, we can tweak the footer price.
+		if ( MNM_Integration.has_single_forced_subscription() ) {
+			$mobile_footer_price.html( container.satt_schemes[0].data.option_details_html.replace( /%p/g, container_price_inner_html ) );
+		}
+	} );
 } ) ( jQuery );

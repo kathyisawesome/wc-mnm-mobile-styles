@@ -25,7 +25,7 @@ defined( 'ABSPATH' ) || exit;
 
                 <div class="mnm_price"></div>
 
-                <button type="button" class="mnm_reset button alt" style="display: none;"><?php echo esc_html_x( 'Clear selection', '[Frontend]', 'wc-mnm-mobile-styles' ); ?></button>
+                <a href="#" class="mnm_reset alt" style="display: none;"><?php echo esc_html_x( 'Clear selections', '[Frontend]', 'wc-mnm-mobile-styles' ); ?></a>
 
                 <div aria-live="polite" role="status" class="mnm_message">
                     <ul class="msg mnm_message_content">

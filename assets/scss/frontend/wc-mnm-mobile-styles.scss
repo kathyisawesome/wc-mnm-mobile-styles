@@ -93,23 +93,13 @@ $handheld:          568px;
 	}
 
 	.mnm_reset {
-		font-size: 0 !important;
 		padding: 0 !important;
-		margin: 0;
-		background: var( --wc-subtext,  #333 );
-		color: var( --wc-primary-text, #FFF );
-		border-radius: 100%;
-
-		opacity: 70%;
-
-		&:hover {
-			opacity: 100%;
-		}
+		margin: 0 !important;
 
 		&:after {
 			margin: 0;
 			font-size: initial;
-			padding: .5em;
+			padding: 0 0 0 .5em;
 		}
 	}
 

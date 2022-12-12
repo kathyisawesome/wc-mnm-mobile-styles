@@ -138,6 +138,10 @@ $handheld:          568px;
 			display: flex;
 			justify-content: space-between;
 
+			.mnm_message_content {
+				margin-bottom: 0;
+			}
+
 			.mnm_button_wrap .button {
 				font-size: 1.6rem;
 			}

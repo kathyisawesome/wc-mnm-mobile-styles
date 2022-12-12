@@ -119,7 +119,7 @@ class WC_MNM_Mobile_Styles {
 	 * @since 2.0.0
 	 */
 	public static function add_target_link() {
-		echo '<div id="mnm-child-items"></div>';
+		echo '<div id="mnm-child-items" class="screen-reader-text"></div>';
 	}
 		
 	/**

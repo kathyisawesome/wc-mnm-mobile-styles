@@ -47,28 +47,6 @@ $handheld:          568px;
 	-webkit-animation-fill-mode: both;
 	animation-fill-mode: both;
 
-	progress.mnm-container-progress[value] {
-		/* Reset the default appearance */
-		-webkit-appearance: none;
-		appearance: none;
-		accent-color: var( --wc-primary, #a46497 );
-		border: 1px solid lightgray;
-		transition: width 0.5s;
-		max-width: 20em;
-		height: .5em;
-		width: 100%;
-	  }
-	  
-	progress.mnm-container-progress::-webkit-progress-value {
-		background-color: var( --wc-primary, #a46497 );
-		transition: width 0.5s;
-	  }
-	  
-	progress.mnm-container-progress::-moz-progress-bar {
-		background-color: var( --wc-primary, #a46497 );
-		transition: width 0.5s;
-	}
-
 	.mnm_button_wrap {
 
 		&:after {

@@ -1,10 +1,5 @@
 @import '../mixins.scss';
 
-/**
- * Variables
- */
-$handheld:          568px;
-
 .woocommerce-js .mnm_form.cart {
 	.mnm_reset {
 		display: none;
@@ -71,6 +66,10 @@ $handheld:          568px;
 	.mnm_price {
 		display: inline-block;
 		font-weight: bold;
+
+		.price {
+			font-size: inherit;
+		}
 	}
 
 	.mnm_message {
@@ -129,9 +128,9 @@ $handheld:          568px;
 
 
 /**
- * Desktop
+ * Not Mobile
  */
- @media (min-width: $handheld) {
+ @media screen and (min-width: 568px) {
 
 	.mnm-mobile-container {
 		.mnm-mobile-content {
@@ -155,6 +154,20 @@ $handheld:          568px;
 				float: none;
 			}
 		}
+	}
+
+}
+
+/**
+ * Desktop
+ */
+ @media screen and (min-width: 1240px) {
+
+	.mnm-mobile-container {
+		.mnm-mobile-content {
+			font-size: 1.2em;
+		}
+
 	}
 
 }

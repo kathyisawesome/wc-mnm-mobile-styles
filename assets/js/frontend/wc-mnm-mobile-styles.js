@@ -104,11 +104,17 @@
 		}
 	} );
 
-	// Variable Mix and Match support.
-	$( document ).on( 'wc_mnm_variation_reset', '.variable_mnm_form', function() {
-		$( '#mnm-mobile-container' ).empty().hide();
+	/**
+	 * Variable Mix and Match support.
+	 */
+	$( document ).on( 'wc_mnm_variation_form_loaded', '.variable_mnm_form', function() {
+		$( this ).find( '.wc-mnm-edit-subscription-actions' ).hide();
 	});
 
+	$( document ).on( 'wc_mnm_variation_reset', '.variable_mnm_form', function() {
+		$( '#mnm-mobile-container' ).empty().hide();
+		$( this ).find( '.wc-mnm-edit-subscription-actions' ).show();
+	});
 
 	/**
 	 * All Products for Subscriptions patch for forced subscription scheme.

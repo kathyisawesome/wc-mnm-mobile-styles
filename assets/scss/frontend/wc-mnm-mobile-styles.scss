@@ -1,23 +1,30 @@
 @import '../mixins.scss';
 
-.woocommerce-js .mnm_form.cart {
-	.mnm_reset {
-		display: none;
-	}
-	
-	.mnm_status, .single_add_to_cart_button, .mnm_reset {
-		display: none !important;
-	}
+.woocommerce-js {
 
-	.mnm_button_wrap {
-		.quantity  { 
+	.mnm_form.cart {
+		.mnm_reset {
+			display: none;
+		}
+		
+		.mnm_status, .single_add_to_cart_button, .mnm_reset {
 			display: none !important;
 		}
-	}
 
-	&.variable_mnm_form .variations_button .quantity {
-		display: none !important;
+		.mnm_button_wrap {
+			.quantity  { 
+				display: none !important;
+			}
+		}
+
+		&.variable_mnm_form .variations_button .quantity {
+			display: none !important;
+		}
+
 	}
+	
+	.wc-mnm-edit-container-shop_subscription .wc-mnm-edit-subscription-actions { display: none; }
+
 }
 
 .mnm-mobile-container {

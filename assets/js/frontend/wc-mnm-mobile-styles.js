@@ -15,7 +15,7 @@
 			var template       = wp.template( 'wc-mnm-mobile-footer' );
 			var button_text    = container.$mnm_button.text();
 			var stock_html     = container.$mnm_data.data( 'stock_html' );
-			var context     = container.$mnm_data.data( 'context' );
+			var context        = container.$mnm_form.data( 'validation_context' ) || 'add-to-cart';
 			
 			let $template_html = template( {
 				is_purchasable    : container.api.is_purchasable(),

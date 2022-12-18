@@ -13,7 +13,7 @@
 			// Render the footer.
 			var $mobile_footer = $( '#mnm-mobile-container' );
 			var template       = wp.template( 'wc-mnm-mobile-footer' );
-			var button_text    = container.$mnm_data.data( 'button_text' );
+			var button_text    = container.$mnm_button.text();
 			var stock_html     = container.$mnm_data.data( 'stock_html' );
 			var context     = container.$mnm_data.data( 'context' );
 			

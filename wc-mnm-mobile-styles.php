@@ -143,12 +143,8 @@ class WC_MNM_Mobile_Styles {
 	 * @param string $context
 	 */
 	public static function container_data_attributes( $attributes, $container ) {
-
-		$attributes[ 'button_text' ] = $container->single_add_to_cart_text();
 		$attributes[ 'stock_html' ]  = wc_get_stock_html( $container );
-
 		return $attributes;
-
 	}
 
 

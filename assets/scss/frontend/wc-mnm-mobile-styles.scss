@@ -87,6 +87,7 @@
 		padding: 0;
 		margin: 0 0 1em 0;
 		list-style: none;
+		font-size: .875em;
 
 		li { 
 			margin-left: 0;
@@ -111,7 +112,7 @@
 
 	.mnm_button_wrap .button {
 		font-size: 1.1rem;
-		padding: 1rem 1.2rem;
+		padding: .5rem .6rem;
 	}
 
 	.wc-mnm-cancel-edit {
@@ -148,9 +149,6 @@
 				margin-bottom: 0;
 			}
 
-			.mnm_button_wrap .button {
-				font-size: 1.6rem;
-			}
 		}
 
 		.column.col-2 { 
@@ -173,6 +171,10 @@
 	.mnm-mobile-container {
 		.mnm-mobile-content {
 			font-size: 1.2em;
+		}
+		.mnm_button_wrap .button {
+			font-size: 1.6rem;
+			padding: 1rem 1.2rem;
 		}
 
 	}

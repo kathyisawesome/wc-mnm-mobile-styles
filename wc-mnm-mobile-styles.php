@@ -121,8 +121,15 @@ class WC_MNM_Mobile_Styles {
 	 * @since 2.0.0
 	 */
 	public static function add_skip_link() {
-		$button_text = doing_action( 'wc_ajax_mnm_get_edit_container_order_item_form' ) ? __( 'Skip to update button.', 'wc-mnm-mobile-styles' ) : __( 'Skip to add to cart button', 'wc-mnm-mobile-styles' );
-		echo '<a href="#mnm-mobile-container" class="screen-reader-text">' . esc_html( $button_text ) . '</a>';
+
+		if ( doing_action( 'wc_ajax_mnm_get_edit_container_order_item_form' )
+			|| ( isset( $_POST['validation_context'] ) && wc_clean( $_POST['validation_context'] ) === 'edit' )
+		) {
+			$button_text = esc_html__( 'Skip to update button.', 'wc-mnm-mobile-styles' );
+		} else {
+			$button_text = esc_html__( 'Skip to add to cart button', 'wc-mnm-mobile-styles' );
+		}
+		echo '<a href="#mnm-mobile-container" class="AAAAAscreen-reader-text">' . esc_html( $button_text ) . '</a>';
 	}
 
 	/**

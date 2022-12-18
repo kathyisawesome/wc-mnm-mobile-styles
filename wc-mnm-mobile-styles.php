@@ -57,13 +57,6 @@ class WC_MNM_Mobile_Styles {
 		 */
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'register_scripts' ), 100 );
 
-		// Accessibility.
-		add_action( 'wc_mnm_before_child_items', array( __CLASS__, 'add_target_link' ) );
-		add_action( 'wc_mnm_after_child_items', array( __CLASS__, 'add_skip_link' ), 101 );
-
-		// Switch context.
-		add_action( 'wc_mnm_container_data_attributes', array( __CLASS__, 'container_data_attributes' ), 10, 2 );
-
 		// Load template.
         add_action( 'woocommerce_mix-and-match_add_to_cart', array( __CLASS__, 'add_template_to_footer' ), 99 );
 		
@@ -152,6 +145,14 @@ class WC_MNM_Mobile_Styles {
 	 * Add the mobile template
 	 */
 	public static function add_template_to_footer() {
+
+		// Accessibility.
+		add_action( 'wc_mnm_before_child_items', array( __CLASS__, 'add_target_link' ) );
+		add_action( 'wc_mnm_after_child_items', array( __CLASS__, 'add_skip_link' ), 101 );
+
+		// Add additional data attributes.
+		add_filter( 'wc_mnm_container_data_attributes', array( __CLASS__, 'container_data_attributes' ), 10, 2 );
+
 		wp_enqueue_script( 'wc_mnm_mobile' );
 		add_action( 'wp_footer', array( __CLASS__, 'footer_template' ), 99 );
 	}

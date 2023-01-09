@@ -84,7 +84,7 @@
 		var $mobile_progress = $mobile_footer.find( 'progress.mnm-container-progress' );
 
 		// Display the price and status counter.
-		$( '#mnm-mobile-container' ).find( '.mnm_price' ).html( container.get_status_html() );
+		$( '#mnm-mobile-container' ).find( '.mnm_price' ).html( container.$mnm_price.html() );
 
 		// Update the progress bar value.
 		$mobile_progress.val( container.api.get_container_size() );

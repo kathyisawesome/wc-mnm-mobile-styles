@@ -17,6 +17,7 @@
 * WC tested up to: 7.0.0
 *
 * GitHub Plugin URI: https://github.com/kathyisawesome/wc-mnm-mobile-styles
+* Primary Branch: trunk
 * Release Asset: true
 *
 * Copyright: © 2019 Kathy Darling

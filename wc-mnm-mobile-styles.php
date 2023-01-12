@@ -1,29 +1,29 @@
 <?php
-/*
-* Plugin Name: WooCommerce Mix and Match - Mobile Styles
-* Plugin URI: https://woocommerce.com/products/woocommerce-mix-and-match-products/
-* Description: Turns the Mix and Match counter message into a sticky footer.
-* Version: 2.0.0-rc.3
-* Author: Kathy Darling
-* Author URI: http://kathyisawesome.com/
-*
-* Text Domain: wc-mnm-mobile-styles
-* Domain Path: /languages/
-*
-* Requires at least: 5.1.0
-* Tested up to: 6.0.0
-*
-* WC requires at least: 6.0.0
-* WC tested up to: 7.0.0
-*
-* GitHub Plugin URI: https://github.com/kathyisawesome/wc-mnm-mobile-styles
-* Primary Branch: trunk
-* Release Asset: true
-*
-* Copyright: © 2019 Kathy Darling
-* License: GNU General Public License v3.0
-* License URI: http://www.gnu.org/licenses/gpl-3.0.html
-*/
+/**
+ * Plugin Name: WooCommerce Mix and Match - Mobile Styles
+ * Plugin URI: https://woocommerce.com/products/woocommerce-mix-and-match-products/
+ * Description: Turns the Mix and Match counter message into a sticky footer.
+ * Version: 2.0.0-rc.3
+ * Author: Kathy Darling
+ * Author URI: http://kathyisawesome.com/
+ *
+ * Text Domain: wc-mnm-mobile-styles
+ * Domain Path: /languages/
+ *
+ * Requires at least: 5.1.0
+ * Tested up to: 6.0.0
+ *
+ * WC requires at least: 6.0.0
+ * WC tested up to: 7.0.0
+ *
+ * GitHub Plugin URI: https://github.com/kathyisawesome/wc-mnm-mobile-styles
+ * Primary Branch: trunk
+ * Release Asset: true
+ *
+ * Copyright: © 2019 Kathy Darling
+ * License: GNU General Public License v3.0
+ * License URI: http://www.gnu.org/licenses/gpl-3.0.html
+ */
 
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {

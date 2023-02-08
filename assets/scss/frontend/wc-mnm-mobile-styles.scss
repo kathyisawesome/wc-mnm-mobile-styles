@@ -49,6 +49,11 @@
 	-webkit-animation-fill-mode: both;
 	animation-fill-mode: both;
 
+	.mnm-mobile-content {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
 	.mnm_button_wrap {
 
 		&:after {

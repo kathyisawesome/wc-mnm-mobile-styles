@@ -17,7 +17,7 @@ defined( 'ABSPATH' ) || exit;
 <div id="mnm-mobile-container" class="mnm-mobile-container mnm_form" style="display:none;"></div>
 
 <script type="text/template" id="tmpl-wc-mnm-mobile-footer">
-    <div class="mnm-mobile-content mnm_cart">
+    <div class="mnm-mobile-content mnm_cart alignwide">
 
     <# if ( data.is_purchasable && data.is_in_stock ) { #>
 

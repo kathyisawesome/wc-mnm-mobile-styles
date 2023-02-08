@@ -46,6 +46,8 @@
 
 			// Switch the buttons to the footer.
 			container.$mnm_button = $mobile_footer.find( '.single_add_to_cart_button' );
+			container.$mnm_reset  = $mobile_footer.find( '.mnm_reset' );
+
 			// Relay footer add to cart click to form button.
 			$mobile_footer.on( 'click', '.single_add_to_cart_button', function( e ) {
 				e.preventDefault();
@@ -58,7 +60,9 @@
 			// Relay footer reset to form reset.
 			$mobile_footer.on( 'click', '.mnm_reset', function( e ) {
 				e.preventDefault();
-				container.$mnm_reset.trigger('click');
+				if (window.confirm(wc_mnm_params.i18n_confirm_reset)) {
+					container.$mnm_form.trigger('wc-mnm-container-reset');
+				}	
 			} );
 
 			// Relay cancel to form cancel for subscription editing.

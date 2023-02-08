@@ -25,7 +25,7 @@ defined( 'ABSPATH' ) || exit;
 
                 <div class="mnm_price"></div>
 
-                <a href="#" class="mnm_reset alt" style="display: none;"><?php echo esc_html_x( 'Clear selections', '[Frontend]', 'wc-mnm-mobile-styles' ); ?></a>
+                <a href="#" class="mnm_reset<?php echo esc_attr( WC_MNM_Core_Compatibility::wp_theme_get_element_class_name( 'button' ) )?>" style="display: none;"><?php echo esc_html_x( 'Clear selections', '[Frontend]', 'wc-mnm-mobile-styles' ); ?></a>
 
                 <div aria-live="polite" role="status" class="mnm_message">
                     <ul class="msg mnm_message_content">
@@ -40,7 +40,7 @@ defined( 'ABSPATH' ) || exit;
 
                 <div class="mnm_button_wrap">
                     
-                    <button data-product_id="{{{ data.container_id }}}" class="single_add_to_cart_button button alt">{{{ data.button_text }}}</button>
+                    <button data-product_id="{{{ data.container_id }}}" class="single_add_to_cart_button button alt<?php echo esc_attr( WC_MNM_Core_Compatibility::wp_theme_get_element_class_name( 'button' ) ); ?>">{{{ data.button_text }}}</button>
 
                     <# if ( data.context === 'edit' ) { #>
                         <div class="wc-mnm-edit-subscription-actions woocommerce-cart-form">

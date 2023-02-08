@@ -44,10 +44,15 @@
 				}
 			}).trigger('resize.wc-mnm-mobile-styles');
 
+			// Switch the buttons to the footer.
+			container.$mnm_button = $mobile_footer.find( '.single_add_to_cart_button' );
 			// Relay footer add to cart click to form button.
 			$mobile_footer.on( 'click', '.single_add_to_cart_button', function( e ) {
 				e.preventDefault();
-				container.$mnm_button.trigger('click');
+
+				// Add a loading class to this button.
+				$(this).addClass('loading');
+				container.$mnm_form.trigger('submit');
 			} );
 
 			// Relay footer reset to form reset.

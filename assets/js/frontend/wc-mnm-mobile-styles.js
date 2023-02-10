@@ -6,17 +6,84 @@
 		var viewportBottom = viewportTop + $(window).height();return elementBottom > viewportTop && elementTop < viewportBottom;
 	};
 
-	// Listen for Mix and Match events.
-	$( document )
-		.on( 'wc-mnm-initializing', function( event, container ) {
 
-			// Render the footer.
-			var $mobile_footer = $( '#mnm-mobile-container' );
-			var template       = wp.template( 'wc-mnm-mobile-footer' );
-			var button_text    = container.$mnm_button.text();
-			var stock_html     = container.$mnm_data.data( 'stock_html' );
-			var context        = container.$mnm_form.data( 'validation_context' ) || 'add-to-cart';
+	/**
+	 * Main container object.
+	 */
+	function WC_MNM_Mobile_Styles( container ) {
+
+		var self       = this;
+		this.container = container;
+		this.$form     = container.$mnm_form;
+		
+		// Define the footer.
+		this.$mobile_footer = $( '#mnm-mobile-container' );
+
+		// Define the element that we will test is in view... different between tabular|grid layouts.
+		this.$scroll_selector = container.$mnm_form.length ? container.$mnm_form : container.$mnm_form.find( 'table tbody' );
+
+		/**
+		 * Init.
+		 */
+		this.initialize = function() {
+
+			this.renderFooter();
+			this.addEventHandlers();
+
+			// Switch the buttons to the footer.
+			container.$mnm_original_button = container.$mnm_button;
+			container.$mnm_button = this.$mobile_footer.find( '.single_add_to_cart_button' );
+			container.$mnm_reset  = this.$mobile_footer.find( '.mnm_reset' );
+
 			
+		};
+
+		/**
+		 * Is in viewport.
+		 */
+		this.isInViewport = function( $el ) {
+			var elementTop = $el.offset().top;
+			var elementBottom = elementTop + $el.outerHeight();var viewportTop = $(window).scrollTop();
+			var viewportBottom = viewportTop + $(window).height();return elementBottom > viewportTop && elementTop < viewportBottom;
+		};
+
+		/**
+		 * Container-Level Event Handlers.
+		 */
+		this.addEventHandlers = function() {
+
+			// Hide/show the footer depending on viewport.
+			$(window).on( 'resize.wc-mnm-mobile-styles scroll.wc-mnm-mobile-styles', this.maybeShowFooter ).trigger('resize.wc-mnm-mobile-styles');
+
+			// Handle update of the footer.
+			$(document).on( 'wc-mnm-update-mobile-footer', this.updateFooter );
+
+			// Handle form events.
+			this.$form.on( 'wc-mnm-form-updated', this.relayUpdate );
+			this.$form.on( 'wc-mnm-display-add-to-cart-button', this.handleValidForm );
+			this.$form.on( 'wc-mnm-hide-add-to-cart-button', this.handleNotValidForm );	
+
+			// Relay footer events to main form.
+			this.$mobile_footer.on( 'click', '.single_add_to_cart_button', { container: container }, this.relayAddToCart );
+			this.$mobile_footer.on( 'click', '.mnm_reset', { container: container }, this.relayReset );
+			this.$mobile_footer.on( 'click', '.wc-mnm-cancel-edit', this.relayCancel );
+
+			// Integrations.
+			$( document ).on( 'wc_mnm_variation_form_loaded', '.variable_mnm_form', this.hideVariationLoaded );
+			$( document ).on( 'wc_mnm_variation_reset', '.variable_mnm_form', this.handleVariationReset );
+
+		};
+
+		/**
+		 * Render the footer in the DOM.
+		 */
+		this.renderFooter = function() {
+
+			let template       = wp.template( 'wc-mnm-mobile-footer' );
+			let button_text    = container.$mnm_button.text();
+			let stock_html     = container.$mnm_data.data( 'stock_html' );
+			let context        = container.$mnm_form.data( 'validation_context' ) || 'add-to-cart';
+
 			let $template_html = template( {
 				is_purchasable    : container.api.is_purchasable(),
 				is_in_stock       : container.api.is_in_stock(),
@@ -30,113 +97,133 @@
 			$template_html = $template_html.replace( '/*<![CDATA[*/', '' );
 			$template_html = $template_html.replace( '/*]]>*/', '' );
 	  
-			$mobile_footer.html( $template_html );
+			this.$mobile_footer.html( $template_html );
 
-			// Hide/Show the footer when form is in view.
-			var $products = container.$mnm_form;
-			var $scroll_selector = $products.length ? $products : container.$mnm_form.find( 'table tbody' );
+		}
 
-			$(window).on( 'resize.wc-mnm-mobile-styles scroll.wc-mnm-mobile-styles', function() {
-				if( $scroll_selector.length && $mobile_footer.children().length && $scroll_selector.isInViewport() ) {
-					$mobile_footer.show();
-				} else {
-					$mobile_footer.hide();
-				}
-			}).trigger('resize.wc-mnm-mobile-styles');
+		/**
+		 * Maybe show the footer when form is in view.
+		 */
+		this.maybeShowFooter = function() {
+			let show = self.$scroll_selector.length && self.$mobile_footer.children().length && self.isInViewport( self.$scroll_selector );
+			self.$mobile_footer.toggle( show );
+		}
 
-			// Switch the buttons to the footer.
-			container.$mnm_button = $mobile_footer.find( '.single_add_to_cart_button' );
-			container.$mnm_reset  = $mobile_footer.find( '.mnm_reset' );
-
-			// Relay footer add to cart click to form button.
-			$mobile_footer.on( 'click', '.single_add_to_cart_button', function( e ) {
-				e.preventDefault();
-
-				// Add a loading class to this button.
-				$(this).addClass('loading');
-				container.$mnm_form.trigger('submit');
-			} );
-
-			// Relay footer reset to form reset.
-			$mobile_footer.on( 'click', '.mnm_reset', function( e ) {
-				e.preventDefault();
-				if (window.confirm(wc_mnm_params.i18n_confirm_reset)) {
-					container.$mnm_form.trigger('wc-mnm-container-reset');
-				}	
-			} );
-
-			// Relay cancel to form cancel for subscription editing.
-			$mobile_footer.on( 'click', '.wc-mnm-cancel-edit', function( e ) {
-				e.preventDefault();
-				$( '.woocommerce-MyAccount-content .wc-mnm-cancel-edit' ).trigger( 'click' );
-			} );
-
-		} )
-		.on( 'wc-mnm-form-updated', function( event, container ) {
+		/**
+		 * Trigger an update of the footer.
+		 */
+		this.relayUpdate = function(e, container) {
 			$( document ).trigger( 'wc-mnm-update-mobile-footer', [ container ] );
-		} )
-		.on( 'wc-mnm-hide-add-to-cart-button', function() {
-			$( '#mnm-mobile-container' ).toggleClass( 'valid', false );
-			$( '#mnm-mobile-container' ).find( '.single_add_to_cart_button' ).toggleClass( 'disabled', true ).prop( 'disabled', true );
-		} )
-		.on( 'wc-mnm-display-add-to-cart-button', function() {
-			$( '#mnm-mobile-container' ).toggleClass( 'valid', true );
-			$( '#mnm-mobile-container' ).find( '.single_add_to_cart_button' ).toggleClass( 'disabled', false ).prop( 'disabled', false );
-		} );
-
-	// Update the footer content.
-	$( document ).on( 'wc-mnm-update-mobile-footer', function( event, container ) { 
-
-		var $mobile_footer   = $( '#mnm-mobile-container' );
-		var $mobile_message  = $mobile_footer.find( '.mnm_message' );
-		var $mobile_reset    = $mobile_footer.find( '.mnm_reset' );
-		var $mobile_progress = $mobile_footer.find( 'progress.mnm-container-progress' );
-
-		// Display the price and status counter.
-		$( '#mnm-mobile-container' ).find( '.mnm_price' ).html( container.$mnm_price.html() );
-
-		// Update the progress bar value.
-		$mobile_progress.val( container.api.get_container_size() );
-
-		// Display the status/error messages.
-		if ( container.has_status_messages() || false === container.passes_validation() ) {
-			$mobile_message.html( container.$mnm_message.html() ).show();
-		} else {
-			$mobile_message.hide();
 		}
 
-		// Hide/Show Reset Link.
-		if ( container.api.get_container_size() > 0 ) {
-			$mobile_reset.show();
-		} else {
-			$mobile_reset.hide();
+		/**
+		 * Maybe show the footer when form is in view.
+		 */
+		this.handleValidForm = function() {
+			let show = self.$scroll_selector.length && self.$mobile_footer.children().length && self.isInViewport( self.$scroll_selector );
+			self.$mobile_footer.toggle( show );
 		}
-	} );
 
-	/**
-	 * Variable Mix and Match support.
-	 */
-	$( document ).on( 'wc_mnm_variation_form_loaded', '.variable_mnm_form', function() {
-		$( this ).find( '.wc-mnm-edit-subscription-actions' ).hide();
+		/**
+		 * Maybe show the footer when form is in view.
+		 */
+		this.handleNotValidForm = function() {
+			let show = self.$scroll_selector.length && self.$mobile_footer.children().length && self.isInViewport( self.$scroll_selector );
+			self.$mobile_footer.toggle( show );
+		}		
+
+		/**
+		 * Maybe show the footer when form is in view.
+		 */
+		this.updateFooter = function(e, container) {
+
+			let $mobile_message  = self.$mobile_footer.find( '.mnm_message' );
+			let $mobile_reset    = self.$mobile_footer.find( '.mnm_reset' );
+			let $mobile_progress = self.$mobile_footer.find( 'progress.mnm-container-progress' );
+	
+			// Display the price and status counter.
+			$( '#mnm-mobile-container' ).find( '.mnm_price' ).html( container.$mnm_price.html() );
+	
+			// Update the progress bar value.
+			$mobile_progress.val( container.api.get_container_size() );
+	
+			// Display the status/error messages.
+			if ( container.has_status_messages() || false === container.passes_validation() ) {
+				$mobile_message.html( container.$mnm_message.html() ).show();
+			} else {
+				$mobile_message.hide();
+			}
+	
+			// Hide/Show Reset Link.
+			$mobile_reset.toggle( container.api.get_container_size() > 0 );
+
+		}		
+
+		/**
+		 * Handle Add to cart button click
+		 */
+		this.relayAddToCart = function(e) {
+
+			e.preventDefault();
+
+			// Add a loading class to this button.
+			$(this).addClass('loading adding');
+
+			e.data.container.$mnm_original_button.trigger('click');
+		}
+
+		/**
+		 * Handle reset click
+		 */
+		this.relayReset = function(e) {
+
+			e.preventDefault();
+			
+			if (window.confirm(wc_mnm_params.i18n_confirm_reset)) {
+				e.data.container.$mnm_form.trigger('wc-mnm-container-reset');
+			}	
+		}
+			
+		/**
+		 * Handle cancel click - Only relevant in edit context.
+		 */
+		this.relayCancel = function(e) {
+			e.preventDefault();
+			$( '.woocommerce-MyAccount-content .wc-mnm-cancel-edit' ).trigger( 'click' );
+		}
+			
+		/*-----------------------------------------------------------------*/
+		/*  Variable Mix and Match support.                                                  */
+		/*-----------------------------------------------------------------*/
+
+		/**
+		 * Handle cancel click - Only relevant in edit context.
+		 */
+		this.hideVariationLoaded = function(e) {
+			console.debug("variation loaded");
+			$( this ).find( '.wc-mnm-edit-subscription-actions' ).hide();
+		}
+	
+
+		/**
+		 * Handle cancel click - Only relevant in edit context.
+		 */
+		this.handleVariationReset = function(e) {
+			self.$mobile_footer.empty().hide();
+			$( this ).find( '.wc-mnm-edit-subscription-actions' ).show();
+		}
+	
+
+
+	} // End WC_MNM_Mobile_Styles.
+
+	/*-----------------------------------------------------------------*/
+	/*  Initialization.                                                */
+	/*-----------------------------------------------------------------*/
+
+	$( 'body' ).on( 'wc-mnm-initializing', function( e, container ) {
+		let footer = new WC_MNM_Mobile_Styles( container );
+		footer.initialize();
 	});
 
-	$( document ).on( 'wc_mnm_variation_reset', '.variable_mnm_form', function() {
-		$( '#mnm-mobile-container' ).empty().hide();
-		$( this ).find( '.wc-mnm-edit-subscription-actions' ).show();
-	});
-
-	/**
-	 * All Products for Subscriptions patch for forced subscription scheme.
-	 */
-	$( document ).on ( 'wcsatt-updated-mnm-subscription-totals', '.mnm_form', function( event, container, MNM_Integration ) {
-
-		const $mobile_footer_price       = $( '#mnm-mobile-container' ).find( '.mnm_price .price' );
-		const container_price_html       = container.get_price_html();
-		const container_price_inner_html = $( container_price_html ).html();
-
-		// If only a single option is present, we can tweak the footer price.
-		if ( MNM_Integration.has_single_forced_subscription() ) {
-			$mobile_footer_price.html( container.satt_schemes[0].data.option_details_html.replace( /%p/g, container_price_inner_html ) );
-		}
-	} );
 } ) ( jQuery );

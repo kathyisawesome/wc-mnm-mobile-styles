@@ -45,7 +45,7 @@ defined( 'ABSPATH' ) || exit;
                     <# if ( data.context === 'edit' ) { #>
                         <div class="wc-mnm-edit-subscription-actions woocommerce-cart-form">
                             <div class="actions">
-                            <button class="button wc-mnm-cancel-edit"><?php echo esc_html_x( 'Cancel edit', '[Frontend]', 'wc-mnm-mobile-styles' ); ?></button>
+                            <button type="button" class="button wc-mnm-cancel-edit<?php echo esc_attr( WC_MNM_Core_Compatibility::wp_theme_get_element_class_name( 'button' ) ); ?>"><?php echo esc_html_x( 'Cancel edit', '[Frontend]', 'wc-mnm-mobile-styles' ); ?></button>
                             </div>
                         </div>
 

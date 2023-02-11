@@ -27,6 +27,10 @@ defined( 'ABSPATH' ) || exit;
 
                 <a href="#" class="mnm_reset" style="display: none;"><?php echo esc_html_x( 'Clear selections', '[Frontend]', 'wc-mnm-mobile-styles' ); ?></a>
 
+                <# if ( data.min_container_size === data.max_container_size ) { #>
+                    <progress class="mnm-container-progress" max="{{{ data.max_container_size }}}" value=""></progress>
+                <# } #>
+
                 <div aria-live="polite" role="status" class="mnm_message">
                     <ul class="msg mnm_message_content">
                         <li></li>

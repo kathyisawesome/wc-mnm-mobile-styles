@@ -99,7 +99,7 @@
 	  
 			this.$mobile_footer.html( $template_html );
 
-		}
+		};
 
 		/**
 		 * Maybe show the footer when form is in view.
@@ -107,14 +107,14 @@
 		this.maybeShowFooter = function() {
 			let show = self.$scroll_selector.length && self.$mobile_footer.children().length && self.isInViewport( self.$scroll_selector );
 			self.$mobile_footer.toggle( show );
-		}
+		};
 
 		/**
 		 * Trigger an update of the footer.
 		 */
 		this.relayUpdate = function(e, container) {
 			$( document ).trigger( 'wc-mnm-update-mobile-footer', [ container ] );
-		}
+		};
 
 		/**
 		 * Maybe show the footer when form is in view.
@@ -122,7 +122,7 @@
 		this.handleValidForm = function() {
 			let show = self.$scroll_selector.length && self.$mobile_footer.children().length && self.isInViewport( self.$scroll_selector );
 			self.$mobile_footer.toggle( show );
-		}
+		};
 
 		/**
 		 * Maybe show the footer when form is in view.
@@ -130,7 +130,7 @@
 		this.handleNotValidForm = function() {
 			let show = self.$scroll_selector.length && self.$mobile_footer.children().length && self.isInViewport( self.$scroll_selector );
 			self.$mobile_footer.toggle( show );
-		}		
+		};	
 
 		/**
 		 * Maybe show the footer when form is in view.
@@ -157,7 +157,7 @@
 			// Hide/Show Reset Link.
 			$mobile_reset.toggle( container.api.get_container_size() > 0 );
 
-		}		
+		};
 
 		/**
 		 * Handle Add to cart button click
@@ -170,7 +170,7 @@
 			$(this).addClass('loading adding');
 
 			e.data.container.$mnm_original_button.trigger('click');
-		}
+		};
 
 		/**
 		 * Handle reset click
@@ -182,7 +182,7 @@
 			if (window.confirm(wc_mnm_params.i18n_confirm_reset)) {
 				e.data.container.$mnm_form.trigger('wc-mnm-container-reset');
 			}	
-		}
+		};
 			
 		/**
 		 * Handle cancel click - Only relevant in edit context.
@@ -190,7 +190,7 @@
 		this.relayCancel = function(e) {
 			e.preventDefault();
 			$( '.woocommerce-MyAccount-content .wc-mnm-cancel-edit' ).trigger( 'click' );
-		}
+		};
 			
 		/*-----------------------------------------------------------------*/
 		/*  Variable Mix and Match support.                                                  */
@@ -199,19 +199,17 @@
 		/**
 		 * Handle cancel click - Only relevant in edit context.
 		 */
-		this.hideVariationLoaded = function(e) {
-			console.debug("variation loaded");
+		this.hideVariationLoaded = function() {
 			$( this ).find( '.wc-mnm-edit-subscription-actions' ).hide();
-		}
+		};
 	
-
 		/**
 		 * Handle cancel click - Only relevant in edit context.
 		 */
-		this.handleVariationReset = function(e) {
+		this.handleVariationReset = function() {
 			self.$mobile_footer.empty().hide();
 			$( this ).find( '.wc-mnm-edit-subscription-actions' ).show();
-		}
+		};
 	
 
 

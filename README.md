@@ -18,6 +18,31 @@ Experimental mini-extension for [WooCommerce Mix and Match](https://woocommerce.
 2. Not ideal for use with Name Your Price or Product Addons.
 3. Requires Mix and Match 2.4+
 
+### Styling the progress bar
+
+You can adjust the styles of the progress bar with the following rules:
+
+```
+.mnm-mobile-container progress.mnm-container-progress::-webkit-progress-bar {
+  background-color: #eee;
+}
+.mnm-mobile-container progress.mnm-container-progress::-webkit-progress-value {
+  background-color: green;
+}
+.mnm-mobile-container progress.mnm-container-progress::-moz-progress-bar {
+  background-color: #eee;
+}
+.mnm-mobile-container progress.mnm-container-progress::-moz-progress-value {
+  background-color: green;
+}
+
+Then for the first CSS rule you shared that looked like,
+.mnm-mobile-container progress.mnm-container-progress[value] {
+  accent-color: green;
+  background-color: #eee;
+}
+```
+
 ### Automatic plugin updates
 
 Plugin updates can be enabled by installing the [Git Updater](https://git-updater.com/) plugin.

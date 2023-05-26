@@ -30,9 +30,10 @@
 			this.renderFooter();
 			this.addEventHandlers();
 
-			// Switch the buttons to the footer.
-			container.$mnm_original_button = container.$mnm_button;
-			container.$mnm_button = this.$mobile_footer.find( '.single_add_to_cart_button' );
+            // Define footer add to cart button.
+            container.$footer_mnm_button = this.$mobile_footer.find( '.single_add_to_cart_button' );
+
+			// Switch the reset button to the footer.
 			container.$mnm_reset  = this.$mobile_footer.find( '.mnm_reset' );
 
 			
@@ -117,23 +118,21 @@
 		};
 
 		/**
-		 * Maybe show the footer when form is in view.
+		 * Re-enable footer add to cart button.
 		 */
 		this.handleValidForm = function() {
-			let show = self.$scroll_selector.length && self.$mobile_footer.children().length && self.isInViewport( self.$scroll_selector );
-			self.$mobile_footer.toggle( show );
+            container.$footer_mnm_button.prop('disabled', false).removeClass('disabled');
 		};
 
 		/**
-		 * Maybe show the footer when form is in view.
+		 * Disable footer add to cart button.
 		 */
 		this.handleNotValidForm = function() {
-			let show = self.$scroll_selector.length && self.$mobile_footer.children().length && self.isInViewport( self.$scroll_selector );
-			self.$mobile_footer.toggle( show );
+            container.$footer_mnm_button.prop('disabled', true).addClass('disabled');
 		};	
 
 		/**
-		 * Maybe show the footer when form is in view.
+		 * Update the footer when config changes.
 		 */
 		this.updateFooter = function(e, container) {
 
@@ -169,7 +168,8 @@
 			// Add a loading class to this button.
 			$(this).addClass('loading adding');
 
-			e.data.container.$mnm_original_button.trigger('click');
+
+			e.data.container.$mnm_button.trigger('click');
 		};
 
 		/**

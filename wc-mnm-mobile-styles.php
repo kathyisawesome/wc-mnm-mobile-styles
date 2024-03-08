@@ -32,8 +32,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class WC_MNM_Mobile_Styles {
 
-	const REQ_MNM_VERSION = '2.4.0-beta.4';
 	const VERSION = '2.0.0-rc.7';
+	const REQ_MNM_VERSION = '2.7.0-beta.1';
 
 	/**
 	 * Fire in the hole!

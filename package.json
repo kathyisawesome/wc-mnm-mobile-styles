@@ -29,15 +29,14 @@
 		"load-grunt-tasks": "~5.1.0"
 	},
 	"scripts": {
-		"build": "npm run build",
-		"deploy": "npm run build && npm run makepot && grunt deploy",
+		"build": "wp-scripts build",
 		"format": "wp-scripts format",
 		"lint:css": "wp-scripts lint-style src/**/*.scss",
 		"lint:js": "wp-scripts lint-js ./src",
 		"makepot": "composer run-script makepot",
-		"prerelease": "npm run release",
-		"release": "grunt release && npm run build && npm run makepot",
+		"betarelease": "npm run release",
+		"release": "npm run build && npm run makepot && grunt release",
 		"start": "wp-scripts start",
-		"zip": "npm run release && wp-scripts plugin-zip"
+		"zip": "npm run release && grunt zip"
 	}
 }

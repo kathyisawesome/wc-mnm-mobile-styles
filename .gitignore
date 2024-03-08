@@ -17,6 +17,8 @@ sftp-config.json
 /build/
 /vendor/
 npm-debug.log
+package-lock.json
+composer.lock
 
 # Sass
 .sass-cache/
@@ -35,7 +37,7 @@ Thumbs.db
 
 # Logs
 /logs
-package-lock.json
+
 
 # Compiled assets
 languages/

@@ -1,7 +1,7 @@
 module.exports = function ( grunt ) {
 
 	require( 'load-grunt-tasks' )( grunt );
-    
+
     // Project configuration.
     grunt.initConfig(
         {
@@ -125,9 +125,8 @@ module.exports = function ( grunt ) {
 
     // Register tasks.
     grunt.registerTask('default', [ 'replace' ]);
-    grunt.registerTask('zip', [ 'clean', 'copy', 'compress' ]);
+    grunt.registerTask('zip', [ 'clean', 'copy', 'compress', 'clean' ]);
     grunt.registerTask('docs', [ 'wp_readme_to_markdown' ]);
     grunt.registerTask('build', [ 'replace', 'clean', 'copy' ]);
-    grunt.registerTask('deploy', [ 'build', 'compress' ]);
-    grunt.registerTask('release', [ 'deploy', 'clean' ]);
+    grunt.registerTask('release', [ 'build', 'compress' ]);
 };

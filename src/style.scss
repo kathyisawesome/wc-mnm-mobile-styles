@@ -1,4 +1,30 @@
-@import '../mixins.scss';
+@mixin iconbefore( $glyph: "\f148" ) {
+	font-family: 'WC-Mix-And-Match';
+	speak: never;
+	font-weight: 400;
+	font-variant: 400;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	margin-right: 0.618em;
+	content: $glyph;
+	text-decoration: none;
+	display: inline-block;
+}
+
+@mixin iconafter( $glyph: "\f148" ) {
+	font-family: 'WC-Mix-And-Match';
+	speak: never;
+	font-weight: 400;
+	font-variant: 400;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	margin-left: 0.618em;
+	content: $glyph;
+	text-decoration: none;
+	display: inline-block;
+}
 
 .woocommerce-js {
 
@@ -28,14 +54,13 @@
 }
 
 .mnm-mobile-container {
-
 	display: none;
 	background: #FFFFFF;
 	position: fixed;
 	bottom: 0;
 	left: 0;
 	right: 0;
-	z-index: 99999;
+	z-index: 999;
 	padding: 1em;
 	overflow: visible;
 
@@ -48,6 +73,10 @@
 	animation-duration: 0.5s;
 	-webkit-animation-fill-mode: both;
 	animation-fill-mode: both;
+
+	&:not(:empty) {
+		display: block;
+	}
 
 	progress.mnm-container-progress {
 		display: block;
@@ -104,9 +133,14 @@
 	.mnm_price {
 		display: inline-block;
 		font-weight: bold;
-
+	
 		.price {
 			font-size: inherit;
+	
+			del {
+				opacity: .5;
+				color: red;
+			}
 		}
 	}
 
@@ -132,10 +166,17 @@
 
 	.mnm_reset {
 		padding: 0 !important;
-		margin: 0 !important;
+		margin: 0 0 0 .5em !important;
+		border: 0;
+		background-color: transparent;
 
 		&:after {
 			font-size: initial;
+		}
+
+		&:hover {
+			text-decoration: underline;
+			cursor: pointer;
 		}
 	}
 
@@ -150,7 +191,46 @@
 		}
 
 	}
-	
+
+	.mnm-config-contents {
+		
+		.mnm-config-contents__items {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			display: flex;
+			padding: 0;
+
+			.mnm-config-contents-items__item {
+				margin-bottom: .5em;
+
+				.remove {
+					margin: 0 .5em .5em 0;
+					padding: .25em .5em;
+					position: absolute;
+					top: -.5em;
+					left: -.5em;
+					border-radius: 50%;
+					opacity: 0;
+					z-index: 1;
+				}
+
+				&.has-selection button.remove {
+					opacity: 1;
+				}
+			}
+
+			.mnm-config-contents-items__item-image {
+				border: 2px dashed #999999;
+				height: 90px;
+				width: 90px;
+			}
+
+			.mnm-config-contents-items__item-title {
+				margin: 0;
+			}
+		}
+	}
 }
 
 

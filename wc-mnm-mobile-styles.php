@@ -72,7 +72,7 @@ class WC_MNM_Mobile_Styles {
 	 */
 	public static function register_scripts() {
 
-		$style_path    = 'assets/dist/frontend/style-mobile-footer.css';
+		$style_path    = 'assets/frontend/style-mobile-footer.css';
 		$style_url     = self::plugin_url() . $style_path;
 		$style_version = WC_Mix_and_Match()->get_file_version( self::plugin_path() . $style_path, self::VERSION );
 
@@ -80,10 +80,10 @@ class WC_MNM_Mobile_Styles {
 		wp_style_add_data( 'wc_mnm_mobile', 'rtl', 'replace' );
 
 		// Scripts.
-		$script_path = 'assets/dist/frontend/mobile-footer.js';
+		$script_path = 'assets/frontend/mobile-footer.js';
 		$script_url  = trailingslashit( plugins_url( '/', __FILE__ ) ) . $script_path;
 
-		$script_asset_path = trailingslashit( plugin_dir_path( __FILE__ ) ) . 'assets/dist/frontend/mobile-footer.asset.php';
+		$script_asset_path = trailingslashit( plugin_dir_path( __FILE__ ) ) . 'assets/frontend/mobile-footer.asset.php';
 		$script_asset      = file_exists( $script_asset_path )
 			? require $script_asset_path
 			: array(

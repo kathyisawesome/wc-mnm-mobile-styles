@@ -10,8 +10,8 @@
  * Text Domain: wc-mnm-mobile-styles
  * Domain Path: /languages/
  *
- * Requires at least: 5.1.0
- * Tested up to: 6.0.0
+ * Requires at least: 6.2.0
+ * Tested up to: 6.4.0
  *
  * WC requires at least: 6.0.0
  * WC tested up to: 7.0.0
@@ -20,7 +20,7 @@
  * Primary Branch: trunk
  * Release Asset: true
  *
- * Copyright: © 2019 Kathy Darling
+ * Copyright: © 2024 Kathy Darling
  * License: GNU General Public License v3.0
  * License URI: http://www.gnu.org/licenses/gpl-3.0.html
  */

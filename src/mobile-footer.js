@@ -171,15 +171,15 @@ if (! container ) {
 
     return (
         <div
-            className={ `mnm-mobile-content mnm_cart alignwide ${
+            className={ `mnm-mobile-content mnm_cart alignwide context-${stateProps.context} ${
                 passesValidation ? 'passes_validation' : 'fails_validation'
                 }` }
-    >
-    <div className="column col-1">
+        >
+            <div className="column col-1">
                 <StatusUI { ...stateProps } />
-    </div>
+            </div>
 
-    <div className="column col-2">
+            <div className="column col-2">
                 <div className="mnm_button_wrap">
                     <AddToCartButton
                         container={ container }
@@ -197,8 +197,8 @@ if (! container ) {
                     </a>
                     <CancelButton context={ context } />
                 </div>
-    </div>
-    </div>
+            </div>
+        </div>
     );
 };
 

@@ -14,9 +14,7 @@ function anchorLinks( props )
     return ( props ) => (
     <>
     <Fill name="beforeChildItems">
-                <div id="wc-mnm-child-items" className="AAAscreen-reader-text">
-                    TACO
-                </div>
+                <div id="wc-mnm-child-items" className="screen-reader-text" />
     </Fill>
     <Fill name="afterChildItems">
                 { ( context ) => {
@@ -35,7 +33,7 @@ function anchorLinks( props )
                     return (
                         <a
                             href="#wc-mnm-footer-add-to-cart"
-                            className="AAAscreen-reader-text"
+                            className="screen-reader-text"
                         >
                             { button_text }
                         </a>
@@ -45,8 +43,6 @@ function anchorLinks( props )
     </>
     );
 }
-
-//<div id="wc-mnm-child-items" className="AAAscreen-reader-text">TACO</div>
 
 addFilter(
     'wcMNM.ChildItems',

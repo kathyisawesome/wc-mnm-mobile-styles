@@ -58,7 +58,7 @@ const MobileFooter = () => {
                 passesValidation:
                 select(CONTAINER_STORE_KEY).passesValidation(),
                 totalPrice: select(CONTAINER_STORE_KEY).getTotal(),
-                totalQuantity: select(CONTAINER_STORE_KEY).getTotalQty(),
+                totalQuantity: select(CONTAINER_STORE_KEY).getTotalQuantity(),
             };
         } else {
         return {};

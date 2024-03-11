@@ -25,12 +25,14 @@ export default function ResetButton( { container, totalQuantity } )
         }
     };
 
+    const formId = container?.parent && container.parent > 0 ? container.parent : container.id;
+
     return (
         <button
             type="button"
             onClick={ onResetConfig }
             className="mnm_reset"
-            data-form_id={ container?.parent ?? container.id }
+            data-form_id={ formId }
         >
             { _x('Clear selections', '[Frontend]', 'wc-mnm-mobile-styles') }
         </button>

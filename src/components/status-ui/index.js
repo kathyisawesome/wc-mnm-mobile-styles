@@ -34,29 +34,28 @@ export default function StatusUI( props )
 
     return (
     <>
-    <div className="mnm_price">
-                <StatusCounter
-                    maxContainerSize={ maxContainerSize }
-                    totalPrice={ totalPrice }
-                    totalQuantity={ totalQuantity }
-                />
-                <ProductPrice totalPrice={ totalPrice } />
-    </div>
-
-    <ResetButton
-                container={ container }
-                totalQuantity={ totalQuantity }
-    />
-
-    <ProgressBar
-                minContainerSize={ minContainerSize }
+        <div className="mnm_price">
+            <ProductPrice totalPrice={ totalPrice } />
+            <StatusCounter
                 maxContainerSize={ maxContainerSize }
+                totalPrice={ totalPrice }
                 totalQuantity={ totalQuantity }
-    />
+            />
+        </div>
 
-    <StatusMessage messages={ messages } />
+        <ResetButton
+            container={ container }
+            totalQuantity={ totalQuantity }
+        />
 
-    <StockStatus product={ container } />
+        <ProgressBar
+            minContainerSize={ minContainerSize }
+            maxContainerSize={ maxContainerSize }
+            totalQuantity={ totalQuantity }
+        />
+
+        <StatusMessage messages={ messages } />
+
     </>
     );
 }

@@ -16,22 +16,23 @@ export default function ResetButton( { container, totalQuantity } )
             `form[data-product_id="${ productId }"]`
         );
 
-    if (form ) {
-        const resetButton = form.querySelector('.mnm_reset');
-        if (resetButton ) {
-            resetButton.click();
+        if (form ) {
+            const resetButton = form.querySelector('.mnm_reset');
+
+            if (resetButton ) {
+                resetButton.click();
+            }
         }
-    }
     };
 
     return (
-    <button
-    type="button"
-    onClick={ onResetConfig }
-    className="mnm_reset"
-    data-form_id={ container.id }
-    >
-    { _x('Clear selections', '[Frontend]', 'wc-mnm-mobile-styles') }
-    </button>
+        <button
+            type="button"
+            onClick={ onResetConfig }
+            className="mnm_reset"
+            data-form_id={ container?.parent ?? container.id }
+        >
+            { _x('Clear selections', '[Frontend]', 'wc-mnm-mobile-styles') }
+        </button>
     );
 }

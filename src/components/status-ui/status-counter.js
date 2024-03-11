@@ -22,8 +22,7 @@ export default function StatusCounter( {
     const formattedPrice = wc.priceFormat.formatPrice(totalPrice.price);
 
     return (
-    <div className="mnm_price">
-    <span className="mnm_counter">
+        <span className="mnm_counter">
                 { sprintf(
                     _nx(
                         '(%1$s/%2$s) item',
@@ -35,7 +34,6 @@ export default function StatusCounter( {
                     totalQuantity,
                     maxContainerSize
                 ) }
-    </span>
-    </div>
+        </span>
     );
 }

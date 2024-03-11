@@ -3,9 +3,9 @@
  */
 import { _x } from '@wordpress/i18n';
 
-export default function ResetButton( { container, totalQuatity } )
+export default function ResetButton( { container, totalQuantity } )
 {
-    if (!! totalQuatity ) {
+    if ( ! totalQuantity ) {
         return null;
     }
 

@@ -228,46 +228,6 @@
 		}
 
 	}
-
-	.mnm-config-contents {
-		
-		.mnm-config-contents__items {
-			margin: 0;
-			padding: 0;
-			list-style: none;
-			display: flex;
-			padding: 0;
-
-			.mnm-config-contents-items__item {
-				margin-bottom: .5em;
-
-				.remove {
-					margin: 0 .5em .5em 0;
-					padding: .25em .5em;
-					position: absolute;
-					top: -.5em;
-					left: -.5em;
-					border-radius: 50%;
-					opacity: 0;
-					z-index: 1;
-				}
-
-				&.has-selection button.remove {
-					opacity: 1;
-				}
-			}
-
-			.mnm-config-contents-items__item-image {
-				border: 2px dashed #999999;
-				height: 90px;
-				width: 90px;
-			}
-
-			.mnm-config-contents-items__item-title {
-				margin: 0;
-			}
-		}
-	}
 }
 
 

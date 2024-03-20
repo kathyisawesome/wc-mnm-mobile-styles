@@ -143,7 +143,7 @@ class WC_MNM_Mobile_Styles {
 		
 		// Add the react's root element.
 		add_action( 'wp_footer', function() {
-			echo '<div id="wc-mnm-status-ui-root" class="mnm-mobile-container mnm_form" ></div>';
+			echo '<div id="wc-mnm-status-ui-root" class="mnm-mobile-container mnm_form woocommerce" ></div>';
 		});
 
 	}

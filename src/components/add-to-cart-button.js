@@ -19,9 +19,9 @@ export default function AddToCartButton( { container, passesValidation } )
             `form[data-product_id="${ productId }"]`
         );
 
-    if (form && ! event.currentTarget.classList.contains('disabled') ) {
-        form.submit();
-    }
+        if (form && ! event.currentTarget.classList.contains('disabled') ) {
+            form.submit();
+        }
     };
 
     if (! inStock || ! isPurchasable ) {
@@ -29,23 +29,20 @@ export default function AddToCartButton( { container, passesValidation } )
     }
 
     // By default, the store API gets the loop's add to cart text, which we modify to be select options so we need a different text.
-    const addToCartText =
-    container?.extensions?.mix_and_match.single_add_to_cart_text ??
-    _x('Add to cart', '[Frontend]', 'wc-mnm-mobile-styles');
+    const addToCartText = container?.extensions?.mix_and_match.single_add_to_cart_text ??  _x('Add to cart', '[Frontend]', 'wc-mnm-mobile-styles');
 
     return (
-    <button
-    id="wc-mnm-footer-add-to-cart"
-    type="button"
-    data-form_id={
-        container.parent > 0 ? container.parent : container.id
-    }
-    onClick={ handleAddToCart }
-    className={ `single_add_to_cart_button button alt wp-element-button ${
-        ! passesValidation ? 'disabled' : ''
-        }` }
-    >
-    { addToCartText }
-    </button>
+        <button
+            type="button"
+            data-form_id={
+                container.parent > 0 ? container.parent : container.id
+            }
+            onClick={ handleAddToCart }
+            className={ `single_add_to_cart_button button alt wp-element-button ${
+                ! passesValidation ? 'disabled' : ''
+            }` }
+        >
+        { addToCartText }
+        </button>
     );
 }

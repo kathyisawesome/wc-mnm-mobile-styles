@@ -4,6 +4,7 @@
 import { useEffect, useState } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 import { _x } from '@wordpress/i18n';
+import { useDebounce } from '@wordpress/compose';
 import { addAction } from '@wordpress/hooks';
 
 import apiFetch from '@wordpress/api-fetch';
@@ -18,6 +19,8 @@ import StatusUI from './components/status-ui';
 import AddToCartButton from './components/add-to-cart-button';
 import CancelButton from './components/cancel-button';
 import './filters';
+
+import { isInViewport } from './utils';
 
 const MobileFooter = () => {
     // Track all props in state. This is a bit of a hack to get around the fact that we can't use useSelect for simple mix and match yet.
@@ -74,6 +77,30 @@ const MobileFooter = () => {
         },
         []
     );
+
+    const handleScroll = () => {
+        const form    = document.querySelector('form.mnm_form');
+        let variation = null;
+
+        if (form) {
+            variation = form.querySelector('.wc-mnm-variation');
+
+			// Define the element that we will test is in view... different between simple|variable mnm.
+			const wrapper = null !== variation ? variation : form;
+
+			const isVisible = isInViewport(wrapper);
+
+			// Only update state when it changes to limit re-renders.
+			if (stateProps.isVisible !== isVisible) {
+				updateStateProps({ isVisible });
+			}
+        } else {
+			updateStateProps({ isVisible: false });
+		}
+
+    };
+
+	const debouncedScroll = useDebounce( handleScroll, 200 );
 
     // Detect a container change/definition. Certain props only change this one time.
     useEffect(() => {
@@ -136,13 +163,19 @@ const MobileFooter = () => {
         }
     }, []);
 
-    // Pull out a few props that we need in this file.
-    const { container, context, passesValidation } = stateProps;
+	// Attach scroll event listener to the window.
+	useEffect(() => {
+		window.addEventListener('scroll', debouncedScroll);
+		handleScroll();
+	}, [debouncedScroll]);
 
-    // Don't show anything until there's a container ID set.
-if (! container ) {
-    return;
-}
+    // Pull out a few props that we need in this file.
+    const { container, context, passesValidation, isVisible } = stateProps;
+
+    // Don't show anything until there's a container ID set and the form is in view.
+    if (!container || !isVisible) {
+        return null;
+    }
 
     return (
         <div
